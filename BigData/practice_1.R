@@ -146,8 +146,39 @@ score <- c(89,90,99,88,76,90,94,83,89,67,93,88)
 x <- matrix(score, nrow=3, ncol=4)
 colnames(x) <- c('KIM', 'LEE', 'PARK', 'CHOI')
 rownames(x) <- c('MATH','ENG', 'KOR')
+t(x)  # 행, 열 변환 -> mtrix() 빼고는 행열변환 잘 안 씀
 a <- x['KOR', 3]       # [3,3]
 b <- x['KOR', 'PARK']  # [3,3]
 c <- x[ ,'KIM']        # [ ,1] KIM 열의 모든 행
 sum(a)
 sum(c)
+
+# matrix - cbind(), rbind()
+y <- matrix(1:20, nrow=4, ncol=5)
+y1 <- c(11:14)
+y2 <- (21:25)
+n1 <- cbind(y, y1) # 열벡터 추가
+n2 <- rbind(y, y2) # 행벡터 추가
+
+# data frame 연습
+score <- c(90, 87, 88, 99, 77,98, 87,93)
+grade <- c('A0', 'B+', 'B+', 'A+', 'C+', 'A+', 'B+', 'A0')
+df <- data.frame(score, grade)
+str <- (iris) #요약정보
+head(iris)    # 앞에서부터 6개 출력
+tail(iris)    # 뒤에서부터 6개 출력
+nrow(iris)    # 행의 개수
+dim(iris)     # 행, 열 개수
+summary(iris) #기술통계량(평균, 중앙값 등)
+subset(iris, Sepal.Length > 6.5)
+colSums(iris[2])
+colMeans(iris[c(1, 3)])
+
+# File 저장 및 읽기
+str(quakes)
+my_quakes <- subset(quakes, mag > 5.5)
+
+setwd("/Users/hyun/Study/CourseWork/Coursework/BigData/work")
+write.csv(my_quakes, "my_quakes.csv", row.names = F)
+new_quakes <- read.csv("my_quakes.csv")
+new_quakes
