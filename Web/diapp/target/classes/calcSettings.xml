@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" 
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+        
+    <!-- StudentScore student1 = new StudentScore(85,90, 100);-->
+    <!-- ctrl + shift + / -->
+    
+    <bean id="student1" class="com.mavenproj.diapp.diex001.StudentScore">
+		<property name="korScore" value="850" />
+		<property name="engScore" value="900" />   
+		<property name="mathScore" value="1000" />      
+    </bean>
+    
+    <!--
+		//1. 단순 산술 평균 계산
+		ScoreCalculator avgCalc = new AverageCalculator(); //객체 생성
+	-->
+	<bean id="avgCalc" class="com.mavenproj.diapp.diex001.AverageCalculator" />
+	
+	
+	<!--
+		//avgCalc와 student1 객체 ReportCard 주입(생성자 이용하여 주입)
+		ReportCard rCard = new ReportCard(avgCalc, student1);
+	--> 
+	<bean id="rCard" class="com.mavenproj.diapp.diex001.ReportCard">
+		<property name="calc" ref="avgCalc" />
+		<property name="score" ref="student1" />
+	</bean>
+	
+	
+		
+        
+        
+
+</beans>
