@@ -16,7 +16,10 @@
     	student1.setMathScore(1000)
     	위 3개는 아래와 같은 개념(?)
     	-->
-    <!-- ctrl + shift + / -->
+    <!-- 
+	window 주석 : ctrl + shift + / 
+    mac OS 주석 : cmd + shift + c
+    -->
     
     <bean id="student1" class="com.mavenproj.diapp.diex001.StudentScore">
 		<property name="korScore" value="850" />
