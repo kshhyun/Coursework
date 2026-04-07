@@ -338,7 +338,7 @@ cs <- c() #empty vector
 for (i in 1:N) {
   sum <- 0
   for (j in 1:M) {
-    sum <- sum +z[i, j]
+    sum <- sum +zz[i, j]
   }
   rs[i] <- sum #각 행의 합
 }
@@ -346,23 +346,25 @@ for (i in 1:N) {
 for (j in 1:M) {
   sum <- 0
   for (i in 1:N) {
-    sum <- sum +z[i, j]
+    sum <- sum +zz[i, j]
   }
   cs[j] <- sum #각 열의 합
 }
 cs <- c(cs,0)  #cs 벡터의 맨끝에 0값 추가
-zz1 <- cbind(z,rs) #행의 합을 오른쪽 끝열에 추가
-zz2 <- rbind(z1,cs) #열의 합을 아래쪽 끝열에 추가
+zz1 <- cbind(zz,rs) #행의 합을 오른쪽 끝열에 추가
+zz2 <- rbind(zz1,cs) #열의 합을 아래쪽 끝열에 추가
 
 #====================================
 #apply
-#1~N*M matrix 행과 열의 합(2)
+#1~N*M matrix 행과 열의 합(3)
 N <- 7
 M <- 6
 f <- N*M
-z <- matrix(1:f, nrow = N, ncol = M, byrow = T)
+zzz <- matrix(1:f, nrow = N, ncol = M, byrow = T)
 rs <- c() #empty vector
 cs <- c() #empty vector
-
-rs <- apply(z, 1, sum) # 각 행의 합
-cs <- apply(z, 2, sum) # 각 열의 합
+rs <- apply(zzz, 1, sum) # 각 행의 합
+cs <- apply(zzz, 2, sum) # 각 열의 합
+cs <- c(cs,0)  #cs 벡터의 맨끝에 0값 추가
+zzz1 <- cbind(zzz,rs) #행의 합을 오른쪽 끝열에 추가
+zzz2 <- rbind(zzz1,cs) #열의 합을 아래쪽 끝열에 추가
