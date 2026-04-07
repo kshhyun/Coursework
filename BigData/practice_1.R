@@ -160,6 +160,7 @@ y2 <- (21:25)
 n1 <- cbind(y, y1) # 열벡터 추가
 n2 <- rbind(y, y2) # 행벡터 추가
 
+#====================================
 # data frame 연습
 score <- c(90, 87, 88, 99, 77,98, 87,93)
 grade <- c('A0', 'B+', 'B+', 'A+', 'C+', 'A+', 'B+', 'A0')
@@ -174,6 +175,7 @@ subset(iris, Sepal.Length > 6.5)
 colSums(iris[2])
 colMeans(iris[c(1, 3)])
 
+#====================================
 # File 저장 및 읽기
 str(quakes)
 my_quakes <- subset(quakes, mag > 5.5)
@@ -182,3 +184,185 @@ setwd("/Users/hyun/Study/CourseWork/Coursework/BigData/work")
 write.csv(my_quakes, "my_quakes.csv", row.names = F)
 new_quakes <- read.csv("my_quakes.csv")
 new_quakes
+
+#====================================
+# 조건문if
+a <- 'LEE'
+if ( a == 'LEE') {
+  cat('동일합니다.')
+}
+
+# if-else
+a <- 10
+b <- 20
+if (a>b) {
+  cat('a는 b보다 크다')
+} else {
+  cat('a는 b보다 작다')
+}
+
+# ifelse
+c <- ifelse(a>b, a, b)
+print(c)
+
+# if-else-if [다중 if]
+s <- 98
+if(s>=95){
+  g <- "A+"
+} else if (s>=90) {
+  g <- "A0"
+} else if (s>=85) {
+  g <- "B+"
+} else if (s>=80) {
+  g <- "B0"
+} else if (s>=75) {
+  g <- "C+"
+} else if (s>=70) {
+  g <- "C0"
+} else if (s>=65) {
+  g <- "D+"
+} else if (s>=60) {
+  g <- "D0"
+} else {
+  g <- "F"
+}
+print(g)
+
+#====================================
+# for 반복문
+sum <- 0
+for(i in 1:100) {
+  sum <- sum + i
+}
+cat("1~100의 합 =", sum)
+
+# 1~100 짝수의 합 / 홀수의 합
+even_sum <- 0
+add_sum <- 0
+for(i in 1:100) {
+  if( i %% 2 == 0) {
+    even_sum <- even_sum + i
+  } else {
+    add_sum <- add_sum + i
+  }
+}
+cat("1~100 짝수합 =", even_sum)
+cat("1~100 홀수합 =", add_sum)
+
+# 1~100 짝수의 합 / 홀수의 합(2)
+even_sum <- 0
+add_sum <- 0
+for(i in seq(1, 100, 2)) {
+  add_sum <- add_sum + i
+}
+for(i in seq(2, 100, 2)) {
+  even_sum <- even_sum + i
+}
+cat('홀수=', add_sum, ' / 짝수=', even_sum)
+
+#중첩 for 반복문
+# 아래는 반복문을 사용하지 않으면 얼마나 복잡한지에 대한 예시(???)
+z <- matrix(1:20, nrow = 5, ncol=4, byrow=T)
+r1 <- sum(z[1, ])
+r2 <- sum(z[2, ])
+r3 <- sum(z[3, ])
+r4 <- sum(z[4, ])
+r5 <- sum(z[5, ])
+# 행의 합을 통해 벡터 r 생성
+rs <- c(r1,r2,r3,r4,r5) #vector of each row sums
+
+c1 <- sum(z[ ,1])
+c2 <- sum(z[ ,2])
+c3 <- sum(z[ ,3])
+c4 <- sum(z[ ,4])
+cs <- c(c1,c2,c3,c4,0) #vector of each row sums
+
+z1 <- cbind(z,rs) #행의 합을 오른쪽 끝열에 추가
+z2 <- rbind(z1,cs) #열의 합을 아래쪽 끝열에 추가
+
+for (i in 1:6) {
+  for(j in 1:5){
+    cat(z2[i, j])
+  }
+  cat("\n")
+}
+
+#1~20 matrix 행과 열의 합(2)
+z <- matrix(1:20, nrow = 5, ncol = 4, byrow = T)
+rs <- c() #empty vector
+cs <- c() #empty vector
+for (i in 1:5) {
+  sum <- 0
+  for (j in 1:4) {
+    sum <- sum +z[i, j]
+  }
+  rs[i] <- sum #각 행의 합
+}
+
+for (j in 1:4) {
+  sum <- 0
+  for (i in 1:5) {
+    sum <- sum +z[i, j]
+  }
+  cs[j] <- sum #각 열의 합
+}
+cs <- c(cs,0)
+z1 <- cbind(z,rs) #행의 합을 오른쪽 끝열에 추가
+z2 <- rbind(z1,cs) #열의 합을 아래쪽 끝열에 추가
+
+# Q1. 아래 코드에서 어떤 Part를 수정해야 열의 합이 얻어질까? (실행X)
+for (i in 1:5) {
+  sum <- 0
+  for (j in 1:4) {
+    sum <- sum +z[i, j]
+  }
+  cs[i] <- sum #각 열의 합
+}
+
+# Q1. answer
+for (j in 1:4) {
+  sum <- 0
+  for (i in 1:5) {
+    sum <- sum +z[i, j]
+  }
+  cs[j] <- sum #각 열의 합
+}
+
+#1~N*M matrix 행과 열의 합 - 위 코드와 동일한 값 출력됨
+N <- 5
+M <- 4
+f <- N*M
+zz <- matrix(1:f, nrow = N, ncol = M, byrow = T)
+rs <- c() #empty vector
+cs <- c() #empty vector
+for (i in 1:N) {
+  sum <- 0
+  for (j in 1:M) {
+    sum <- sum +z[i, j]
+  }
+  rs[i] <- sum #각 행의 합
+}
+
+for (j in 1:M) {
+  sum <- 0
+  for (i in 1:N) {
+    sum <- sum +z[i, j]
+  }
+  cs[j] <- sum #각 열의 합
+}
+cs <- c(cs,0)  #cs 벡터의 맨끝에 0값 추가
+zz1 <- cbind(z,rs) #행의 합을 오른쪽 끝열에 추가
+zz2 <- rbind(z1,cs) #열의 합을 아래쪽 끝열에 추가
+
+#====================================
+#apply
+#1~N*M matrix 행과 열의 합(2)
+N <- 7
+M <- 6
+f <- N*M
+z <- matrix(1:f, nrow = N, ncol = M, byrow = T)
+rs <- c() #empty vector
+cs <- c() #empty vector
+
+rs <- apply(z, 1, sum) # 각 행의 합
+cs <- apply(z, 2, sum) # 각 열의 합
