@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+        
+        <!-- cmd + ctrl + /-->
+        <!--
+			StudentScore sScore = new StudentScore(800,900,1000);
+		
+		ArrayList<StudentScore> studentScores = new ArrayList<>();
+		studentScores.add(new StudentScore (80,90,100));
+		studentScores.add(sScore);
+		-->
+		
+		<bean id="sScore" class="com.mavenproj.diapp.diex001.StudentScore"
+		p:korScore="850" p:engScore="950" p:mathScore="1050">
+		</bean>
+		
+		<bean id="studentScores" class="java.util.ArrayList">
+			<constructor-arg>
+				<list>
+					<bean class="com.mavenproj.diapp.diex001.StudentScore"
+					p:korScore="80" p:engScore="90" p:mathScore="100">
+					</bean>
+					<ref bean="sScore"></ref>
+					
+				</list>
+			</constructor-arg>
+		</bean>
+		
+		<!--
+			Map<String, String> addrList = new HashMap<>();
+		addrList.put("hong1", "서울시 성동구 행정동");
+		addrList.put("hong2", "서울시 성동구 사동");
+		-->
+		
+		<bean id="collectionMap" class="com.mavenproj.diapp.diex001.CollectionMap">
+			<property name="addrList"> <!--collect-->
+				<map>
+					<entry>
+						<key><value>hong1</value></key>
+						<value>서울시 성동구 행정동</value>
+					</entry>
+					
+					<entry>
+						<key><value>hong2</value></key>
+						<value>서울시 성동구 사근동</value>
+					</entry>
+				</map>
+			</property>
+		</bean>
+		
+		<!--
+			Set<String> jobList = new HashSet<>();
+		jobList.add("프론트 엔지니어");
+		jobList.add("백엔 엔지니어");
+		jobList.add("프론트 엔지니어");
+		-->
+		
+		<bean id="collectionSet" class="com.mavenproj.diapp.diex001.CollectionSet">
+			<property name="jobList"> <!--CollectionSet.java의 setJobList에서 소문자로 바꾼 것-->
+				<set>
+					<value>프론트 엔지니어</value>
+					<value>백엔드 엔지니어</value>
+					<value>백엔드 엔지니어</value>
+				</set>
+			</property>
+		</bean>
+		
+		
+		
+		
+</beans>
