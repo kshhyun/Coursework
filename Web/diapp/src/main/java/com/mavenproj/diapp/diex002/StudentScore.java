@@ -1,8 +1,23 @@
 package com.mavenproj.diapp.diex002;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+//<bean id="student1" class="com.mavenproj.diapp.diex001.StudentScore">
+//	<property name="korScore" value="850" />
+//	<property name="engScore" value="900" />   
+//	<property name="mathScore" value="1000" />      
+//</bean>
+//컴포넌트 괄호 안에 빈칸 채우기 or 위 코드를 아래 코드로 혹은 아래 코드를 위 코드로 변환해 작성하는 문제 출제
+
+
+//@Component("student1") --> xml로 객체설정을 하기 때문에, 여기서는 주석 처리 
 public class StudentScore {
+	//@Value("852")
 	private int korScore;
+	//@Value("910")
 	private int engScore;
+	//@Value("1100")
 	private int mathScore;
 	
 	//생성자 이용하여 멤버변수값 설정

@@ -1,8 +1,21 @@
 package com.mavenproj.diapp.diex002;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+//<bean id ="weightedCalc" class="com.mavenproj.diapp.diex001.WeightedAvgCalculator">
+//	<property name="korWeight" value="0.3"></property>
+//	<property name="engWeight" value="0.3"></property>
+//	<property name="mathWeight" value="0.3"></property>
+//</bean>
+
+@Component("weightedCalc")
 public class WeightedAvgCalculator implements ScoreCalculator{
+	@Value("0.3")
 	private double korWeight;
+	@Value("0.3")
 	private double engWeight;
+	@Value("0.3")
 	private double mathWeight;
 	
 	//인자가 없는 디폴트 생성자 설정

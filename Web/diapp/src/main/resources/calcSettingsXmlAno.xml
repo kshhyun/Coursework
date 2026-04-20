@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+        
+        <context:component-scan base-package="com.mavenproj.diapp.diex002" />
+        
+        <bean id="student1" class="com.mavenproj.diapp.diex002.StudentScore">
+		<property name="korScore" value="850" />
+		<property name="engScore" value="900" />   
+		<property name="mathScore" value="1000" />      
+    </bean>
+    
+    <bean id="student2" class="com.mavenproj.diapp.diex002.StudentScore">
+		<property name="korScore" value="8500" />
+		<property name="engScore" value="9000" />   
+		<property name="mathScore" value="10000" />      
+    </bean>
+    
+    <!-- StudentScore student1 = new StudentScore(85,90, 100);-->
+    <bean id="student3" class="com.mavenproj.diapp.diex002.StudentScore">
+    	<constructor-arg value="85"/>
+    	<constructor-arg value="90"/>
+    	<constructor-arg value="100"/>
+    </bean>
+    
+    
+    <bean id="student4" class="com.mavenproj.diapp.diex002.StudentScore">
+    	<constructor-arg index="0" value="85"/>
+    	<constructor-arg index="1" value="90"/>
+    	<constructor-arg index="2" value="100"/>
+    </bean>
+    
+    <!-- p네임스퉤어를 이용해 객체의 변수값 설정 -->
+    <bean id="student5" class="com.mavenproj.diapp.diex002.StudentScore"
+    p:korScore="8500" p:engScore="9000" p:mathScore="9500">	
+    </bean>
+    
+    
+    <!--
+		//1. 단순 산술 평균 계산
+		ScoreCalculator avgCalc = new AverageCalculator(); //객체 생성
+	-->
+	<bean id="avgCalc" class="com.mavenproj.diapp.diex002.AverageCalculator" />
+	
+	
+	<!--
+		//avgCalc와 student1 객체 ReportCard 주입(생성자 이용하여 주입)
+		ReportCard rCard = new ReportCard(avgCalc, student1);
+	--> 
+	<bean id="rCard" class="com.mavenproj.diapp.diex002.ReportCard">
+		<property name="calc" ref="avgCalc" />
+		<property name="score" ref="student1" />
+	</bean>
+	
+	<!--//2. 가중치 산술 평균 계산
+	ScoreCalculator weightedCalc = new WeightedAvgCalculator(0.3, 0.3,0.4); -->
+	
+	<bean id ="weightedCalc" class="com.mavenproj.diapp.diex002.WeightedAvgCalculator">
+		<property name="korWeight" value="0.3"></property>
+		<property name="engWeight" value="0.3"></property>
+		<property name="mathWeight" value="0.3"></property>
+	</bean>
+	
+	<!-- //셋터이용 객체 설정
+	rCard.setCalc(weightedCalc);
+	calc : setCalc()
+	score : setScore()
+	-->
+	<bean id="rCardWeight" class="com.mavenproj.diapp.diex002.ReportCard">
+		<property name="calc" ref="weightedCalc"/>
+		<property name="score" ref="student3"/>
+	</bean>
+    
+</beans>

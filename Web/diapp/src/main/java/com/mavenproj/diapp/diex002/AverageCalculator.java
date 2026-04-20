@@ -1,7 +1,12 @@
 package com.mavenproj.diapp.diex002;
 
-public class AverageCalculator implements ScoreCalculator{
+import org.springframework.stereotype.Component;
 
+//<bean id="avgCalc" class="com.mavenproj.diapp.diex001.AverageCalculator" />
+
+@Component("avgCalc")
+public class AverageCalculator implements ScoreCalculator{
+	
 	@Override
 	public double calculate(StudentScore score) {
 		int total = (score.getKorScore() + 
