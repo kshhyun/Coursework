@@ -52,6 +52,17 @@ a != b  # True
 
 #====================================
 # Vector - Java, C와 달리 인덱스 1부터 시작
+# Vector를 생성하는 함수의 활용 
+a <- c(1:20)
+b <- seq(1, 15)
+c <- seq(1, 30, by=2)
+print(c)
+
+menu <- c('Americano', 'Cappuccino')
+d <- rep(menu, times=2)
+num <- c(1,3,5)
+e <- rep(num, times=3)
+
 x1 <- c(2,4,6,8,10,12,14,16)
 x1[1]
 x1[6]
@@ -90,7 +101,7 @@ x1 <- score[c(1,3,7)]   # 1, 3, 7인덱스 값 추출
 x2 <- score[seq(1,10,2)] #홀수값 추출
 x3 <- score[seq(1,10, by=2)] #홀수값 추출
 x4 <- score[c(1:3, seq(3,10,3))] # 1~3까지, 3, 6, 9 추출
-x5 <- score[-c(3,6,9)]. # 3,6,9 값 제외 추출
+x5 <- score[-c(3,6,9)]  # 3,6,9 값 제외 추출
 
 # 벡터와 숫자 연산
 n <- c(1,2,5)
@@ -150,8 +161,11 @@ t(x)  # 행, 열 변환 -> mtrix() 빼고는 행열변환 잘 안 씀
 a <- x['KOR', 3]       # [3,3]
 b <- x['KOR', 'PARK']  # [3,3]
 c <- x[ ,'KIM']        # [ ,1] KIM 열의 모든 행
+c
 sum(a)
 sum(c)
+
+x2 <- t(x)
 
 # matrix - cbind(), rbind()
 y <- matrix(1:20, nrow=4, ncol=5)
@@ -160,12 +174,15 @@ y2 <- (21:25)
 n1 <- cbind(y, y1) # 열벡터 추가
 n2 <- rbind(y, y2) # 행벡터 추가
 
+y[1:2,]  # 1~2행 모든 열
+
 #====================================
 # data frame 연습
 score <- c(90, 87, 88, 99, 77,98, 87,93)
 grade <- c('A0', 'B+', 'B+', 'A+', 'C+', 'A+', 'B+', 'A0')
 df <- data.frame(score, grade)
 str <- (iris) #요약정보
+str(iris)
 head(iris)    # 앞에서부터 6개 출력
 tail(iris)    # 뒤에서부터 6개 출력
 nrow(iris)    # 행의 개수
@@ -275,7 +292,7 @@ c1 <- sum(z[ ,1])
 c2 <- sum(z[ ,2])
 c3 <- sum(z[ ,3])
 c4 <- sum(z[ ,4])
-cs <- c(c1,c2,c3,c4,0) #vector of each row sums
+cs <- c(c1,c2,c3,c4,0)
 
 z1 <- cbind(z,rs) #행의 합을 오른쪽 끝열에 추가
 z2 <- rbind(z1,cs) #열의 합을 아래쪽 끝열에 추가
@@ -316,7 +333,7 @@ for (i in 1:5) {
   for (j in 1:4) {
     sum <- sum +z[i, j]
   }
-  cs[i] <- sum #각 열의 합
+  rs[i] <- sum #각 열의 합
 }
 
 # Q1. answer
@@ -327,6 +344,10 @@ for (j in 1:4) {
   }
   cs[j] <- sum #각 열의 합
 }
+
+cs <- c(cs,0)
+z1 <- cbind(z,rs) #행의 합을 오른쪽 끝열에 추가
+z2 <- rbind(z1,cs) #열의 합을 아래쪽 끝열에 추가
 
 #1~N*M matrix 행과 열의 합 - 위 코드와 동일한 값 출력됨
 N <- 5
@@ -353,6 +374,15 @@ for (j in 1:M) {
 cs <- c(cs,0)  #cs 벡터의 맨끝에 0값 추가
 zz1 <- cbind(zz,rs) #행의 합을 오른쪽 끝열에 추가
 zz2 <- rbind(zz1,cs) #열의 합을 아래쪽 끝열에 추가
+
+#====================================
+# while
+sum <- 0
+for(i in 1:100){     # i가 1부터 100까지 1씩 증가 -> 반복
+  if(i %% 2 == 0) next # i를 2로 나눈 나머지가 0 -> 짝수라면 아래 과정 생략
+  sum <- sum + i
+}
+cat("1부터 100까지 홀수의 합 = ", sum, "\n")  # 2500
 
 #====================================
 #apply
