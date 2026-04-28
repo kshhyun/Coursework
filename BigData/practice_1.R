@@ -398,3 +398,54 @@ cs <- apply(zzz, 2, sum) # 각 열의 합
 cs <- c(cs,0)  #cs 벡터의 맨끝에 0값 추가
 zzz1 <- cbind(zzz,rs) #행의 합을 오른쪽 끝열에 추가
 zzz2 <- rbind(zzz1,cs) #열의 합을 아래쪽 끝열에 추가
+
+#====================================
+#while() 반복문
+#1+2+3+........ 합이 500을 넘을 때,
+#더해진 마지막 숫자는?
+sum <- 0
+i <- 1
+while(T){
+  sum <- sum + i
+  if(sum > 500) break
+  i <- i + 1
+}
+cat("1+2+3+.....+", i, "=", sum, "\n")
+
+#====================================
+# 사용자 정의함수 호출
+setwd("~/Study/CourseWork/Coursework/BigData")  #경로설정
+source("user_function.R")                       #사용자 정의 함수 include
+r1 <- four_arithmetic(20, 30)
+r2 <- even_odd_sum(1000)
+r3 <- rcs_1(5, 8)
+r4 <- rcs_2(8, 3)
+
+score <- c(78, 88, 56, 90, 99, 87, 89, 94, 88, 77)
+unit <- c(3, 2, 2, 3, 2, 3, 1, 2, 3, 3) # 이수단위
+name <- "KIM"
+id <- "20250010"
+class <- "S"
+r5 <- score_table(name, id, class, score, unit)
+
+score <- c(88, 88, 90, 90, 99, 87, 89, 94, 88, 77)
+name <- "LEE"
+id <- "20250011"
+class <- "S"
+r6 <- score_table(name, id, class, score, unit)
+
+# 데이터 추출 테스트
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")    #경로 설정
+Hanyang_Coffee <- read.csv("coffee_info.csv")
+
+r1 <- Hanyang_Coffee[2]           # 2열 데이터 출력
+r2 <- Hanyang_Coffee[1:3]         # 1~3열 데이터 추출
+r3 <- Hanyang_Coffee[c(2,3,5)]    # 2, 3, 5열
+r4 <- Hanyang_Coffee[1, 3]        # 1행 3열
+r5 <- Hanyang_Coffee[1:2, 3]      # 1~2행, 3열
+r6 <- Hanyang_Coffee[c(2,3,5), 5] # 2, 3, 5행/5열
+r7 <- Hanyang_Coffee["Beans"]     # 변수 이름이 Beans인 열
+r8 <- Hanyang_Coffee[2:5, "Beans"]# 2~5행까지 열이름이 Beans
+r9 <- Hanyang_Coffee$Beans
+r10 <- Hanyang_Coffee[Hanyang_Coffee$Beans == "Arabica", ]
+
