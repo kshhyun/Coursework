@@ -1,0 +1,5 @@
+setwd("D:/source")
+student <- read.csv("student_body.csv")
+str(student)
+hist(student$Height, main="히스토그램 분포도", 
+     col=rainbow(5), xlab="학생들의 키", ylab="명 수")

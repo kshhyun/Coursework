@@ -1,0 +1,5 @@
+No <- c(1:10)
+Blood <- c("A", "B", "A", "O", "AB", "O", "O", "AB", "A","A")
+student <- data.frame(No, Blood)
+str(student)
+table(student$Blood)
