@@ -1,0 +1,12 @@
+library(treemap)
+DF <- data.frame(state.x77)
+
+#include USA state names
+New_DF <- data.frame(DF, state.name)
+
+treemap(New_DF,
+        index="state.name",
+        vSize="Income",
+        vColor="Illiteracy",
+        type="value",
+        title="¹Ì±¹ 50°³ ÁÖÀÇ ¼Òµæ°ú ¹®¸Í·ü")
