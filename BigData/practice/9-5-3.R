@@ -1,4 +1,4 @@
-setwd("D:/source")
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
 Class_A <- read.csv("student_blood_types_A.csv")
 Class_B <- read.csv("student_blood_types_B.csv")
 A_freq <- table(Class_A$Blood)
@@ -6,8 +6,8 @@ B_freq <- table(Class_B$Blood)
 student_freq <- rbind(A_freq, B_freq)
 student_freq
 
-remark <- c("A¹Ý", "B¹Ý")
-barplot(student_freq, main="ÇÐ»ýµéÀÇ Ç÷¾×Çü ºÐÆ÷", 
-        col=c("green", "blue"), xlab="Ç÷¾×Çü",
-        ylab="ÇÐ»ý ¼ö", legend.text=remark, 
+remark <- c("Aë°˜", "Bë°˜")
+barplot(student_freq, main="í•™ìƒë“¤ì˜ í˜ˆì•¡í˜• ë¶„í¬", 
+        col=c("green", "blue"), xlab="í˜ˆì•¡í˜•",
+        ylab="í•™ìƒ ìˆ˜", legend.text=remark, 
         args.legend=list(x="top", ncol=2))
