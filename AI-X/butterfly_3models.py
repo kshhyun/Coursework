@@ -22,7 +22,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-from sklearn.metrics import (
+from sklearn.metrics import ( # lib에 들어있는 평가 방법 list
     accuracy_score, recall_score, precision_score, f1_score,
     classification_report, confusion_matrix
 )
