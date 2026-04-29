@@ -32,11 +32,14 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 warnings.filterwarnings('ignore')
 
 # --- 설정 및 상수 ---
-plt.rcParams['font.family'] = 'Malgun Gothic' # Windows 환경
+#plt.rcParams['font.family'] = 'Malgun Gothic' # Windows 환경
+plt.rcParams['font.family'] = 'AppleGothic' # macOS 환경
 plt.rcParams['axes.unicode_minus'] = False
 OUTPUT_DIR = './output'
-CSV_DIR = '.'
-CSV_PATTERN = '*.csv'
+#CSV_DIR = '.'
+CSV_DIR = os.path.expanduser('~/Study/CourseWork/Coursework/AI-X')
+CSV_PATTERN = 'butterfly.csv'
+#CSV_PATTERN = '*.csv'
 
 CLASS_NAMES = {1: '제비나비', 2: '왕오색나비', 3: '흰나비', 4: '박각시나방', 5: '누에나방'}
 FEATURE_COLS = ['wing_color_brightness', 'wing_pattern_complexity', 'body_thickness', 
