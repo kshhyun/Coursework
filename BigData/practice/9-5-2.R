@@ -1,8 +1,11 @@
-setwd("D:/source")
+setwd("~/Study/CourseWork/Coursework/BigData/practice")
 student <- read.csv("student_blood_types.csv")
 str(student)
 student_freq <- table(student$Blood)
 
-barplot(student_freq, main="ÇÐ»ýµéÀÇ Ç÷¾×Çü ºÐÆ÷", 
-        col=rainbow(4), xlab="ÇÐ»ý ¼ö",
-        ylab="Ç÷¾×Çü", horiz=T)
+# í•œê¸€ ê¹¨ì§ ì´ìŠˆ
+par(family = "AppleGothic")
+
+barplot(student_freq, main="í•™ìƒë“¤ì˜ í˜ˆì•¡í˜• ë¶„í¬", 
+        col=rainbow(4), xlab="í•™ìƒ ìˆ˜",
+        ylab="í˜ˆì•¡í˜•", horiz=T)
