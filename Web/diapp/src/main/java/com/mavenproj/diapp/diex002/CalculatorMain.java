@@ -15,7 +15,7 @@ public class CalculatorMain {
 		//학생점수 설정 및 출력
 		//StudentScore student1 = new StudentScore(85,90, 100);
 		// 컨테이너에서 "student"라는 이름의 빈을 찾아 가져옴 -> 위 코드를 아래 코드로 수정
-		StudentScore student1 = (StudentScore) context.getBean("student1");
+		StudentScore student1 = (StudentScore) context.getBean("student3");
 		System.out.println(student1.toString());
 		
 		//1. 단순 산술 평균 계산
