@@ -14,7 +14,7 @@ public class ProgramConfig {
 //	<property name="engScore" value="900" />   
 //	<property name="mathScore" value="1000" />
 	@Bean
-	public StudentScore sutdent1() {
+	public StudentScore student1() {
 		return new StudentScore(850, 900, 1000);
 	}
 //	<bean id="student3" class="com.mavenproj.diapp.diex002.StudentScore">
@@ -23,7 +23,7 @@ public class ProgramConfig {
 //		<constructor-arg value="100"/>
 //	</bean>	
 	@Bean
-	public StudentScore sutdent3() {
+	public StudentScore student3() {
 		return new StudentScore(85, 90, 100);
 	}
 	
