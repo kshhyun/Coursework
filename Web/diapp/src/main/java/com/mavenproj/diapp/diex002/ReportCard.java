@@ -15,7 +15,7 @@ public class ReportCard {
 	@Qualifier("avgCalc") //weightedCalc도 있어서 에러 발생 -> avgCalc로 지정하면 에러 없이 실행 됨 
 	private ScoreCalculator calc;
 	@Autowired
-	@Qualifier("student1")
+	@Qualifier("student3")
 	private StudentScore score;
 	
 	//생성자 이용하여 주입
@@ -37,7 +37,7 @@ public class ReportCard {
 	}	
 	//평균 출력 메소드 생성
 	public void printReport() {
-		System.out.println("===== 성적표 ======");
+		System.out.println("===== 성적표(ReportCard) ======");
 		System.out.println(score.toString());
 		
 		System.out.println("계산방식 : " + calc.getCalcMethod());
