@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 //	<property name="score" ref="student1" />
 //</bean>
 
-@Component("rCard")
+//@Component("rCard") -> ProgramConfig에서 이미 객체 생성 
 public class ReportCard {
-	@Autowired
+	@Autowired // 이 어노테이션은 주석 처리하면 X
 	@Qualifier("avgCalc") //weightedCalc도 있어서 에러 발생 -> avgCalc로 지정하면 에러 없이 실행 됨 
 	private ScoreCalculator calc;
 	@Autowired
