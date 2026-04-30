@@ -1,13 +1,16 @@
 package com.mavenproj.diapp.diex002;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class CalculatorMain {
 	public static void main(String[] args) {
 		
 		//xml 지시서(설정파일)을 이용해 실제객체 생성 or 조립 실행 
-		ApplicationContext context = new ClassPathXmlApplicationContext("calcSettingsXmlAno.xml");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("calcSettingsXmlAno.xml");
+		
+		ApplicationContext context = new AnnotationConfigApplicationContext(ProgramConfig.class);
 		
 		//학생점수 설정 및 출력
 		//StudentScore student1 = new StudentScore(85,90, 100);
