@@ -1,11 +1,9 @@
 package Chap05_FilterStream;
 
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.Reader;
 import java.io.Writer;
 
-public class OutputStreamWriter {
+public class OutputStreamWriterEx {
     public static void main(String[] args) throws Exception {
         FileOutputStream fos = new FileOutputStream("test.txt");
         Writer writer = new java.io.OutputStreamWriter(fos);
