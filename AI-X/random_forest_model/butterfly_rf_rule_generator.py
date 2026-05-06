@@ -179,8 +179,12 @@ def generate_clips_forward_chaining(rules):
 # 메인 실행 흐름 (사용자 입력 기반)
 # =====================================================================
 def main():
-    MODEL_PATH = "/Users/hyun/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl"
+    #MODEL_PATH = "random_forest_model.pkl"
+    # 1. 물결표(~)를 사용할 때만 expanduser 사용
+    MODEL_PATH = os.path.expanduser("~/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl")
 
+# 2. 또는 그냥 절대 경로 그대로 사용
+    #MODEL_PATH = "/Users/hyun/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl"
     # 1. 학습된 모델 로드
     try:
         with open(MODEL_PATH, 'rb') as f:
