@@ -178,17 +178,19 @@ def generate_clips_forward_chaining(rules):
 # =====================================================================
 # 메인 실행 흐름 (사용자 입력 기반)
 # =====================================================================
+import joblib
 def main():
     #MODEL_PATH = "random_forest_model.pkl"
     # 1. 물결표(~)를 사용할 때만 expanduser 사용
-    MODEL_PATH = os.path.expanduser("~/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl")
+    #MODEL_PATH = os.path.expanduser("~/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl")
 
 # 2. 또는 그냥 절대 경로 그대로 사용
-    #MODEL_PATH = "/Users/hyun/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl"
+    MODEL_PATH = "/Users/hyun/Study/CourseWork/Coursework/AI-X/random_forest_model/random_forest_model.pkl"
     # 1. 학습된 모델 로드
     try:
-        with open(MODEL_PATH, 'rb') as f:
-            model = pickle.load(f)
+        #with open(MODEL_PATH, 'rb') as f:
+            #model = pickle.load(f)
+        model = joblib.load(MODEL_PATH)
         total_trees = len(model.estimators_)
         print(f"[+] 성공적으로 모델을 로드했습니다. (총 트리 개수: {total_trees}개)")
     except Exception as e:
