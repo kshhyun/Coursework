@@ -310,7 +310,7 @@ if __name__ == "__main__":
     # 모델 저장
     import joblib
     
-    joblib.dump(model, os.path.join('./', 'random_forest_model.pkl'))
+    joblib.dump(model, os.path.join('/Users/hyun/Study/CourseWork/Coursework/AI-X/random_forest_model', 'random_forest_model.pkl'))
     print (f"모델이 'random_forest_model.pkl'에 저장되었습니다.")
 
     # 4. 추론
