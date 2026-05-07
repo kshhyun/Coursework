@@ -1,40 +1,22 @@
 package com.mavenproj.jobSite.model;
 
-//Data Access Object
+import java.util.HashMap;
+import java.util.Map;
+
+//Data Access Object -> 데이터 저장, 삭제, 수정, 찾기 등의 메소드를 갖고있는 클래
 public class jobDao {
-	private String id;       //primary key
-	private String cname;    //회사
-	private String cpayment; //연봉
-	private String cfields;  //직무분야
+	//DB 연동 대신 HashMap을 이용해 데이터 관리	
+	private Map<String, jobDo> jobDb = new HashMap<>();
 	
-	@Override
-	public String toString() {
-		return "jobDao [id=" + id + ", cname=" + cname + ", cpayment=" + cpayment + ", cfields=" + cfields + "]";
+	//insert() : 데이터 저장
+	public void insert(jobDo jdo) {
+		jobDb.put(jdo.getId(), jdo);
 	}
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getCname() {
-		return cname;
-	}
-	public void setCname(String cname) {
-		this.cname = cname;
-	}
-	public String getCpayment() {
-		return cpayment;
-	}
-	public void setCpayment(String cpayment) {
-		this.cpayment = cpayment;
-	}
-	public String getCfields() {
-		return cfields;
-	}
-	public void setCfields(String cfields) {
-		this.cfields = cfields;
+	//getJob() : DB로부터 getJob 전체 데이터 가져옴
+	public Map<String, jobDo> getJobDb() {
+		return jobDb;
 	}
 	
+	//delete()
 }
