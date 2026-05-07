@@ -1,5 +1,6 @@
 package com.mavenproj.jobSite.model;
 
+//Data Access Object
 public class jobDao {
 	private String id;       //primary key
 	private String cname;    //회사
