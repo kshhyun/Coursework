@@ -9,5 +9,30 @@
         
         <context:component-scan base-package="com.mavenproj.jobSite"/>
         
+
+		<!-- job001 객체 생성 
+		jobDo를 찾아감 -->
+        <bean id="job001" class="com.mavenproj.jobSite.model.jobDo">
+        	<property name="id" value="job001"></property>
+        	<property name="cname" value="LG"></property>
+        	<property name="cpayment" value="5000"></property>
+        	<property name="cfields" value="software"></property>
+        </bean>
         
+        <bean id="job002" class="com.mavenproj.jobSite.model.jobDo">
+        	<property name="id" value="job002"></property>
+        	<property name="cname" value="Samsung"></property>
+        	<property name="cpayment" value="8000"></property>
+        	<property name="cfields" value="web Backend"></property>
+        </bean>
+        
+		<!-- Dao 객체 생성-->
+		<bean id="jobDao" class="com.mavenproj.jobSite.model.jobDao">
+		</bean>
+		
+		<!-- jobService 객체 생성 : jobImple.class 의 jobDao 생성자를 이용해 jobDao 객체 주입-->
+		<bean id="jobService" class="com.mavenproj.jobSite.service.jobServiceImpl">
+			<constructor-arg ref="jobDao"></constructor-arg>
+		</bean>
+		
 </beans>
