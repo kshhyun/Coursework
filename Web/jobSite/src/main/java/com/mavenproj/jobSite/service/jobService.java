@@ -11,4 +11,12 @@ public interface jobService {
 	
 	//전체 데이터 가져오기
 	Map<String, jobDo> getJobDb();
+	
+	//하나의 채용정보 가져오기
+	jobDo getJob(String id);
+	
+	//하나의 채용정보 update
+	void updateJob(jobDo jdo);
+	
+	void deleteJob(jobDo jdo);
 }
