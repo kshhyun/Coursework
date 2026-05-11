@@ -30,6 +30,36 @@ public class jobMain {
 			jobDo temp = job.getValue()	;
 			System.out.println("-->" + temp.toString());
 		}
+		
+		//하나의 데이터(채용정보) 가져오기
+		System.out.println("하나의 데이터 가져오기");
+		jobDo temp = jService.getJob("job002");
+		System.out.println("--> 한개의 데이터 읽어오기 : " + temp.toString());
+		
+		//job001 -> '현대'로 업데이트
+		jobDo newjob = new jobDo();
+		newjob.setId("job001");
+		newjob.setCname("현대");
+		newjob.setCpayment("5000");
+		newjob.setCfields("FullStack Engineer");
+		
+		//수정한 데이터 업데이트 -> 이 코드 안 쓰면 업데이트 전 데이터로 출력됨
+		jService.updateJob(newjob);
+		
+		//업데이트 후 출력
+		Map<String, jobDo> jList2 = jService.getJobDb();
+		for(Map.Entry<String, jobDo> job:jList2.entrySet()) {
+			jobDo temp2 = job.getValue()	;
+			System.out.println("--> 수정한 데이터 가져오기 : " + temp2.toString());
+		}
+		
+		//삭제
+		Map<String, jobDo> jList3 = jService.getJobDb();
+		for(Map.Entry<String, jobDo> job:jList3.entrySet()) {
+			jobDo temp3 = job.getValue()	;
+			System.out.println("--> 수정한 데이터 가져오기 : " + temp3.toString());
+		}
+		
 	}
 
 }
