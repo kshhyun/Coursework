@@ -23,10 +23,12 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 warnings.filterwarnings('ignore')
 
 # --- 설정 및 상수 ---
-plt.rcParams['font.family'] = 'Malgun Gothic' # Windows 환경
+#plt.rcParams['font.family'] = 'Malgun Gothic' # Windows 환경
+plt.rcParams['font.family'] = 'AppleGothic' # macOS 환경
 plt.rcParams['axes.unicode_minus'] = False
 
-CSV_DIR = './data'
+OUTPUT_DIR = './output'
+CSV_DIR = os.path.expanduser('~/Study/CourseWork/Coursework/AI-X/random_forest_model/data')
 CSV_PATTERN = '*.csv'
 
 CLASS_NAMES = {1: '제비나비', 2: '왕오색나비', 3: '흰나비', 4: '박각시나방', 5: '누에나방'}
