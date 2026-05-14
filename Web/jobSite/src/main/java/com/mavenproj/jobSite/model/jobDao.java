@@ -50,7 +50,7 @@ public class jobDao {
 	//delete() : ID 삭제
 	public void deleteJob(jobDo jdo) {
 		if(jobDb.containsKey(jdo.getId())) {
-			jobDb.put(jdo.getId(), jdo);
+			jobDb.remove(jdo.getId(), jdo);
 		}
 		else {
 			System.out.println("삭제할 ID가 없습니다." + jdo.getId());

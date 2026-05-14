@@ -18,5 +18,6 @@ public interface jobService {
 	//하나의 채용정보 update
 	void updateJob(jobDo jdo);
 	
+	//하나의 채용정보 delete
 	void deleteJob(jobDo jdo);
 }
