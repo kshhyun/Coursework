@@ -28,15 +28,16 @@ public class jobMain {
 		Map<String, jobDo> jList = jService.getJobDb();
 		for(Map.Entry<String, jobDo> job:jList.entrySet()) {
 			jobDo temp = job.getValue()	;
-			System.out.println("-->" + temp.toString());
+			System.out.println("Origin ->" + temp.toString());
 		}
 		
 		//하나의 데이터(채용정보) 가져오기
-		System.out.println("하나의 데이터 가져오기");
+		System.out.println("\n[job002의 데이터 가져오기]");
 		jobDo temp = jService.getJob("job002");
-		System.out.println("--> 한개의 데이터 읽어오기 : " + temp.toString());
+		System.out.println("-> 한개의 데이터 읽어오기 : " + temp.toString());
 		
 		//job001 -> '현대'로 업데이트
+		System.out.println("\n[데이터 업데이트: job001의 cname, dfields 수정]");
 		jobDo newjob = new jobDo();
 		newjob.setId("job001");
 		newjob.setCname("현대");
@@ -50,14 +51,20 @@ public class jobMain {
 		Map<String, jobDo> jList2 = jService.getJobDb();
 		for(Map.Entry<String, jobDo> job:jList2.entrySet()) {
 			jobDo temp2 = job.getValue()	;
-			System.out.println("--> 수정한 데이터 가져오기 : " + temp2.toString());
+			System.out.println("-> 수정한 데이터 가져오기 : " + temp2.toString());
 		}
 		
-		//삭제
+		//job001 -> 삭제
+		System.out.println("\n[데이터 삭제: job001 삭제]");
+		//jobDo newjob = new jobDo();
+		newjob.setId("job001");
+		jService.deleteJob(newjob);
+		
+		//삭제 후 출력
 		Map<String, jobDo> jList3 = jService.getJobDb();
 		for(Map.Entry<String, jobDo> job:jList3.entrySet()) {
 			jobDo temp3 = job.getValue()	;
-			System.out.println("--> 수정한 데이터 가져오기 : " + temp3.toString());
+			System.out.println("-> 삭제한 데이터 가져오기 : " + temp3.toString());
 		}
 		
 	}
