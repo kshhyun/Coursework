@@ -173,3 +173,61 @@ sales <- DF$Sales
 plot(time, sales, main="광고 시간과 판매량 추이", 
      xlab="시간(분)", ylab="판매량(잔)", pch=22,
      col="blue", bg="red", cex=1.5)
+
+# 10-3 -------------------
+# pairs() 함수
+str(mtcars)
+
+vars <- c("mpg", "disp", "wt", "cyl")
+target <- mtcars[ , vars]
+head(target)
+par(family="AppleGothic")
+pairs(target, main="연비, 배기량, 무게, 실린더 수에 따른 산포도",
+      col=rainbow(4))
+
+# 10-4 -------------------
+str(iris)
+#Select 'Petal.Length' and 'Petal.Width'
+vars <- iris[ , 3:4]
+point <- as.numeric(iris$Species)
+plot_color <- c("red", "green", "blue")
+remark <- c("setosa", "versicolor", "virginica")
+plot(vars, main="품종에 따른 꽃잎의 길이와 폭의 산포도",
+     xlab="꽃잎의 길이(Petal.Length)",
+     ylab="꽃잎의 폭(Petal.Width)",
+     pch=c(point), col=plot_color[point])
+
+# 10-5 -------------------
+#bal(blood alcohol level)
+bottle <- c(5, 2, 9, 8, 3, 7, 3, 5, 3, 5)
+bal <- c(0.1, 0.03, 0.19, 0.12, 0.04, 0.095, 0.07, 0.06, 0.02, 0.05)
+table <- data.frame(bottle, bal)
+
+plot(table, main="음주정도와 혈중알콜농도의 산포도",
+     xlab="음주량(bottle)",
+     ylab="혈중알콜농도(bal)",
+     pch=19, col="red")
+
+res <- lm(bal~bottle, data=table)
+abline(res, lwd=2, col="blue")
+cor(bottle, bal)
+
+# 10-6 -------------------
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
+DF <- read.csv("adv_sales.csv")
+str(DF)
+
+time <- DF$ADV
+sales <- DF$Sales
+table <- data.frame(time, sales)
+
+plot(table, main="광고 시간과 커피 판매량 추이", 
+     xlab="시간(분)", ylab="판매량(잔)", 
+     pch=8, col="blue")
+
+res <- lm(sales~time, data=table)
+abline(res, lwd=2, col="red")
+cor(time, sales)
+
+
+

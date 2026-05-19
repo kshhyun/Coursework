@@ -6,7 +6,6 @@ vars <- iris[ , 3:4]
 point <- as.numeric(iris$Species)
 plot_color <- c("red", "green", "blue")
 remark <- c("setosa", "versicolor", "virginica")
-plot(vars, main="Ç°Á¾¿¡ µû¸¥ ²ÉÀÙÀÇ ±æÀÌ¿Í ÆøÀÇ »êÆ÷µµ",
-     xlab="²ÉÀÙÀÇ ±æÀÌ(Petal.Length)",
-     ylab="²ÉÀÙÀÇ Æø(Petal.Width)",
+plot(vars, main="í’ˆì¢…ì— ë”°ë¥¸ ê½ƒìì˜ ê¸¸ì´ì™€ í­ì˜ ì‚°í¬ë„    xlab="????ê½ƒìì˜ ê¸¸ì´al.Length)",
+     ylab="????ê½ƒìì˜ í­al.Width)",
      pch=c(point), col=plot_color[point])

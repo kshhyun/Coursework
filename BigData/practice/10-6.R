@@ -1,5 +1,4 @@
-#using the 'D:/source/adv_sales.csv' file 
-setwd("D:/source")
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
 DF <- read.csv("adv_sales.csv")
 str(DF)
 
@@ -7,8 +6,8 @@ time <- DF$ADV
 sales <- DF$Sales
 table <- data.frame(time, sales)
 
-plot(table, main="±¤°í ½Ã°£°ú Ä¿ÇÇ ÆÇ¸Å·® ÃßÀÌ", 
-     xlab="½Ã°£(ºÐ)", ylab="ÆÇ¸Å·®(ÀÜ)", 
+plot(table, main="ê´‘ê³  ì‹œê°„ê³¼ ì»¤í”¼ íŒë§¤ëŸ‰ ì¶”ì´", 
+     xlab="ì‹œê°„(ë¶„)", ylab="íŒë§¤ëŸ‰(ìž”)", 
      pch=8, col="blue")
 
 res <- lm(sales~time, data=table)
