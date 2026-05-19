@@ -160,5 +160,16 @@ plot(female_height, female_weight, main="여성의 키와 몸무게 분포",
      xlab="키", ylab="몸무게", pch=21,
      col="blue", bg="green", cex=1.5)
 
+# [0519] ====================================================
 # [Plot]
 # 9-10 -------------------
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
+DF <- read.csv("adv_sales.csv")
+par(family="AppleGothic")
+str(DF)
+
+time <- DF$ADV
+sales <- DF$Sales
+plot(time, sales, main="광고 시간과 판매량 추이", 
+     xlab="시간(분)", ylab="판매량(잔)", pch=22,
+     col="blue", bg="red", cex=1.5)

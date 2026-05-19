@@ -1,10 +1,11 @@
 #using the 'D:/source/adv_sales.csv' file 
-setwd("D:/source")
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
 DF <- read.csv("adv_sales.csv")
+par(family="AppleGothic")
 str(DF)
 
 time <- DF$ADV
 sales <- DF$Sales
-plot(time, sales, main="±¤°í ½Ã°£°ú Ä¿ÇÇ ÆÇ¸Å·® ÃßÀÌ", 
-     xlab="½Ã°£(ºÐ)", ylab="ÆÇ¸Å·®(ÀÜ)", pch=22,
+plot(time, sales, main="ê´‘ê³  ì‹œê°„ê³¼ íŒë§¤ëŸ‰ ì¶”ì´", 
+     xlab="ì‹œê°„(ë¶„)", ylab="íŒë§¤ëŸ‰(ìž”)", pch=22,
      col="blue", bg="red", cex=1.5)
