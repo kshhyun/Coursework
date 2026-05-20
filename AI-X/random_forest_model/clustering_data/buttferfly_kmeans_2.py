@@ -25,10 +25,10 @@ from sklearn.cluster import KMeans
 warnings.filterwarnings('ignore')
 
 # --- 설정 및 상수 ---
-plt.rcParams['font.family'] = 'Malgun Gothic' # Windows 환경
+#plt.rcParams['font.family'] = 'Apple Gothic' # Windows 환경
 plt.rcParams['axes.unicode_minus'] = False
 
-CSV_DIR = './clustering_data'  # CSV 파일이 위치한 디렉토리
+CSV_DIR = os.path.expanduser('~/Study/CourseWork/Coursework/AI-X/random_forest_model/clustering_data/clustering_data')
 CSV_PATTERN = '*.csv'
 
 # CLASS_NAMES = {1: '제비나비', 2: '왕오색나비', 3: '흰나비', 4: '박각시나방', 5: '누에나방'}
