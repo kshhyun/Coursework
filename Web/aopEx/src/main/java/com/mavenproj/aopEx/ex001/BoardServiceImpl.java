@@ -13,21 +13,21 @@ public class BoardServiceImpl implements BoardService {
 	public void insertBoard() {
 		//log.printLog();
 		System.out.println("[핵심기능] insertBoard() 동작 수행");
-		log.printLogModify();
+		//log.printLogModify();
 	}
 
 	@Override
 	public void updateBoard() {
 		//log.printLog();
 		System.out.println("[핵심기능] updateBoard() 동작 수행");
-		log.printLogModify();
+		//log.printLogModify();
 	}
 
 	@Override
 	public void deleteBoard() {
 		//log.printLog();
 		System.out.println("[핵심기능] deleteBoard() 동작 수행");
-		log.printLogModify();
+		//log.printLogModify();
 	}
 	
 	
