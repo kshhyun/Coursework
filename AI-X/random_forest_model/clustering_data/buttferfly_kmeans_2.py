@@ -28,6 +28,7 @@ warnings.filterwarnings('ignore')
 #plt.rcParams['font.family'] = 'Apple Gothic' # Windows 환경
 plt.rcParams['axes.unicode_minus'] = False
 
+plt.rcParams['font.family'] = 'Apple Gothic' # MacOS 환경
 CSV_DIR = os.path.expanduser('~/Study/CourseWork/Coursework/AI-X/random_forest_model/clustering_data/clustering_data')
 CSV_PATTERN = '*.csv'
 
