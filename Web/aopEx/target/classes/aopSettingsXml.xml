@@ -19,6 +19,7 @@
         <!-- 부가 코드(Cross Cutting Concern 코드)의 객체 생성 -->
         <bean id="before" class="com.mavenproj.aopEx.ex002.BeforeAdvice"></bean>
         <bean id="afterReturning" class="com.mavenproj.aopEx.ex002.AfterReturningAdvice"></bean>
+        <bean id="afterThrowing" class="com.mavenproj.aopEx.ex002.AfterThrowingAdvice"></bean>
         
         <!-- aop 적용 -->
         <aop:config>
@@ -31,11 +32,13 @@
         	expression="execution(* com.mavenproj.aopEx.ex002..delete*(..))" />
         	
 			<!-- 위빙 -->
-<!--			<aop:aspect ref="before">-->
-<!--			아래 코드주석 처리 했을 때 결과 -> 이유 확인-->
-<!--				<aop:before method="beforeLog" pointcut-ref="insertPointcut"/>-->
-<!--				<aop:before method="beforeLog" pointcut-ref="deletePointcut"/>-->
-<!--			</aop:aspect>-->
+			<aop:aspect ref="afterThrowing">
+				<aop:pointcut id="updatePointcut"
+				expression="execution(* com.mavenproj.aopEx.ex002..update*(..))" />
+				<aop:after-throwing method="afterThrowingAdvice"
+					pointcut-ref="updatePointcut"
+					throwing="ex"/>
+			</aop:aspect>
 				
 			<aop:aspect ref="afterReturning">
 				<aop:after-returning method="afterReturningAdvice"
