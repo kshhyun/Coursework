@@ -8,19 +8,21 @@ public class BoardServiceImpl implements BoardService {
 	//로그를 출력하기 위한 LogAdvice 객체 연결(@Autowired 이용)
 	@Autowired
 	private LogAdvice log;
+	int seq = 0;
 	
 	@Override
 	public void insertBoard() {
-		//log.printLog();
 		System.out.println("[핵심기능] insertBoard() 동작 수행");
-		//log.printLogModify();
+		
 	}
 
 	@Override
 	public void updateBoard() {
 		//log.printLog();
 		System.out.println("[핵심기능] updateBoard() 동작 수행");
-		//log.printLogModify();
+		if(seq==0) {
+			throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
+		}
 	}
 
 	@Override
