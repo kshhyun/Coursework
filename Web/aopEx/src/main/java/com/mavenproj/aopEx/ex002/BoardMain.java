@@ -7,7 +7,7 @@ public class BoardMain {
 
 	public static void main(String[] args) {
 		//1.설정파일(지시서)를 읽어와, 실행해서 결과(객체)를 만드는 과정
-		ApplicationContext context = new ClassPathXmlApplicationContext("aopSettings.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("aopSettingsXml.xml");
 		
 		//2.BoardService 객체 가져오기 -> (BoardService) context 왜 붙이는지 찾아보
 		BoardService bService = (BoardService) context.getBean("boardService");
