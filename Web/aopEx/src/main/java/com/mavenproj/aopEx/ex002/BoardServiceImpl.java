@@ -24,10 +24,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void deleteBoard() {
+	public String deleteBoard() {
 		//log.printLog();
 		System.out.println("[핵심기능] deleteBoard() 동작 수행");
 		//log.printLogModify();
+		
+		return "Hello Spring AOP";
 	}
 	
 	
