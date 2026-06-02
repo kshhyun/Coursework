@@ -456,3 +456,49 @@ treemap(New_DF,
         vColor="Illiteracy",
         type="value",
         title="미국 50개 주의 수입과 문맹률?")
+
+# [Bubble Chart]
+symbols(DF$Illiteracy, DF$Murder,
+        circles=DF$Population,
+        inches=0.7,
+        fg="white",
+        bg="darkgray",
+        lwd=1,
+        xlab="문맹률(%)",
+        ylab="살인률(%)",
+        main="50개 주의 문맹률에 따른 살인 비율 분포")
+
+# 11-13 -------------------
+library(treemap)
+DF <- data.frame(state.x77)
+# 인구, 문맹률, 소득
+symbols(DF$Illiteracy, DF$Murder,
+        circles=DF$Population,
+        inches=0.7,
+        fg="white",
+        bg="darkgray",
+        lwd=1,
+        xlab="문맹률(%)",
+        ylab="살인률(%)",
+        main="50개 주의 문맹률에 따른 살인 비율 분포")
+
+text(DF$Illiteracy, DF$Murder,
+     rownames(DF),
+     cex=0.6,
+     col=rainbow(7))
+
+# 인구, 소득, 평균 수명
+symbols(DF$Income, DF$Life.Exp,
+        circles=DF$Population,
+        inches=0.7,
+        fg="white",
+        bg="lightgray",
+        lwd=1,
+        xlab="소독",
+        ylab="평균 수명",
+        main="50개 주의 인구 대비 소독과 평균 수명과의 관계")
+
+text(DF$Income, DF$Life.Exp,
+     rownames(DF),
+     cex=0.6,
+     col=rainbow(3))
