@@ -502,3 +502,73 @@ text(DF$Income, DF$Life.Exp,
      rownames(DF),
      cex=0.6,
      col=rainbow(3))
+
+# 7강 [Mosaic Plot]
+# 12-1 -------------------
+UCBAdmissions
+ftable(UCBAdmissions)
+library(vcd)
+
+mosaicplot(~Dept + Gender + Admit, data=UCBAdmissions,
+           xlab="", ylab="Gender",
+           color=c("pink", "lightblue"),
+           dir = c("v","h","v"))
+
+# 12-2 -------------------
+str(Titanic)
+ftable(Titanic)
+
+mosaicplot(~Class + Survived, 
+           data = Titanic,
+           xlab="선실등급(Class)", 
+           ylab="생존여부(Survived)",
+           color=c("lavender", "lightgreen"),
+           cex = 1,
+           dir = c("v","h"))
+
+# [ggplot]
+# 12-3 -------------------
+library(ggplot2)
+library(mlbench)
+data("BostonHousing")
+DF <- BostonHousing[ ,c("crim", "medv")]
+str(DF)
+ggplot(DF,
+       aes(x=medv, y=crim)) + 
+  geom_point(pch=1, cex=2, col="red")
+
+# 12-4 -------------------
+library(ggplot2)
+par(family = "AppleGothic")
+# using iris data
+ggplot(data = iris,
+       aes(x = Sepal.Length, y = Sepal.Width)) + 
+  geom_point(col = c("red", "green", "blue")[iris$Species], 
+             pch = c(1, 2, 3)[iris$Species],
+             size = 2) +
+  labs(title = "꽃받침의 길이와 폭에 대한 산포도", 
+       x="꽃받침의 길이(Sepal.Length)", 
+       y="꽃받침의 폭(Sepal.Width)")
+
+# 12-6 -------------------
+# Using the 'mtcars' data frame
+library(ggplot2)
+str(mtcars)
+ggplot(data=mtcars) +
+  geom_bar(mapping = aes(x=cyl, fill=as.factor(am)),
+           position = "dodge") + 
+  theme(legend.position = "bottom") +
+  scale_fill_discrete(name = "변속기", 
+                      labels=c("automatic", "manual")) +
+  labs(x = "실린더 수(4, 6, 8)",
+       y = "자동차 수",
+       title = "실린더 수에 따른 자동차 분석")
+# 그룹별 히스토그램
+ggplot(iris, aes(x=Sepal.Width, fill=Species, color=Species)) +
+  geom_histogram(binwidth = 0.5, position="dodge") +
+  theme(legend.position="top")
+# 그룹별 히스토그램 (꽃잎의 길이와 폭)
+ggplot(data=iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
+  geom_point(size=3) +
+  ggtitle("꽃잎의 길이와 폭") + 
+  theme(plot.title = element_text(size=16, face="bold", colour="steelblue"))
