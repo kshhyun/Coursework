@@ -12,7 +12,8 @@ public class CalcMain {
 		//서비스 객체 가져오기
 		ICalc calcService = (ICalc) context.getBean("calcImpl");
 		
-		calcService.doAdd(10, 20);
+		//3.가져온 객체 실행
+		System.out.println("[출력] doAdd(10, 10) = " + calcService.doAdd(10, 10));
 		//나눗셈에서 에러 발생
 		calcService.doDiv(10, 0);
 	}
