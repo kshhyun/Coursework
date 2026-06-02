@@ -328,6 +328,7 @@ library(mlbench)
 data("BostonHousing")
 str(BostonHousing)
 DF <- BostonHousing[ ,c("crim", "rm", "dis", "tax", "ptratio", "medv")]
+par(family="AppleGothic")
 
 #Max and Min
 val_max <- max(DF$medv)
@@ -349,6 +350,67 @@ for(i in 1:nrow(DF)){
 factor_medv <- factor(factor_medv, levels = c("H", "M", "L"))
 DF <- data.frame(DF, factor_medv)
 
+#주택 가격이 1인당 범죄율에 미치는 영향
 boxplot(DF$crim~DF$factor_medv, 
-        main="주택가격과 1인당 범죄건 수", xlab="???? ????", 
-        ylab="???˰? ??", col="red")
+        main="주택가격과 1인당 범죄건 수", xlab="주택 가격", 
+        ylab="범죄건 수", col="red")
+# 주택 가격이 평균 룸의 개수에 미치는 영향
+boxplot(DF$rm~DF$factor_medv, 
+        main="주택 가격과 평균 룸의 개수", xlab="주택 가격", 
+        ylab="평균 룸의 개수", col="green")
+# 주택 가격이 직업센터까지의 접근성에 미치는 영향
+boxplot(DF$dis~DF$factor_medv, 
+        main="주택 가격과 직업센터까지의 거리", xlab="주택 가격", 
+        ylab="직업센터까지 거리", col="blue")
+# 주택 가격이 학생 또는 교사 수에 미치는 영향
+boxplot(DF$ptratio~DF$factor_medv, 
+        main="주택 가격과 학생 수", xlab="주택 가격", 
+        ylab="학생 수", col="yellow")
+# [산포도] ----------------------------
+# 주택 가격에 따른 범죄율과의 상관 분석
+vars <- c("crim", "medv")
+target <- DF[ , vars]
+point <- as.integer(DF$factor_medv)
+color <- c("red", "green", "blue")
+remark <- c("H","M", "L")
+plot(target, main="주택가격에 따른 1인당 범죄율 산포도",
+     xlab="범죄건 수", ylab="타운 수",
+     pch = point, col = color[point])
+
+legend(x="top", ncol=3, legend=c("H,", "M,", "L"), 
+       col=c("red", "green", "blue"), pch=c(1,2,3), 
+       bg = "white", cex = 1)
+
+cor(DF$crim, DF$medv)
+
+# 주택 가격에 따른 룸의 개수와의 상관 분석
+vars <- c("rm", "medv")
+target <- DF[ , vars]
+point <- as.integer(DF$factor_medv)
+color <- c("red", "green", "blue")
+remark <- c("H","M", "L")
+plot(target, main="주택가격에 따른 룸의 개수 산포도",
+     xlab="룸의 개수", ylab="타운 수",
+     pch = point, col = color[point])
+
+legend(x="topleft", ncol=3, legend=c("H,", "M,", "L"), 
+       col=c("red", "green", "blue"), pch=c(1,2,3), 
+       bg = "white", cex = 1)
+
+cor(DF$rm, DF$medv)
+
+# 주택 가격에 따른 학생 수의 상관 분석
+vars <- c("ptratio", "medv")
+target <- DF[ , vars]
+point <- as.integer(DF$factor_medv)
+color <- c("red", "green", "blue")
+remark <- c("H","M", "L")
+plot(target, main="주택가격에 따른 학생 수 산포도",
+     xlab="학생 수", ylab="타운 수",
+     pch = point, col = color[point])
+
+legend(x="bottomleft", ncol=3, legend=c("H,", "M,", "L"), 
+       col=c("red", "green", "blue"), pch=c(1,2,3), 
+       bg = "white", cex = 1)
+
+cor(DF$ptratio, DF$medv)
