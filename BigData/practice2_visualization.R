@@ -259,7 +259,7 @@ hist(DF[ ,6], main="주택가격 비율", xlab="주택가격(1,000$)",
 
 # [0526] ====================================================
 # [5강 시계열 분석]
-# [par()]
+# [par]
 x<- c(2,5,6,5,7,9,11,5,7,9,13,15,17)
 y<- c(1,2,3,4,5,6,7,8,9,10,11,12,13)
 plot(x,y, main="PLOT", xlab="x-lab", ylab="y-lab",type="p")  
@@ -414,3 +414,45 @@ legend(x="bottomleft", ncol=3, legend=c("H,", "M,", "L"),
        bg = "white", cex = 1)
 
 cor(DF$ptratio, DF$medv)
+
+# [treemap]
+# 11-9 -------------------
+library(treemap)
+data(GNI2014)
+str(GNI2014)
+par(family="AppleGothic")
+treemap(GNI2014,
+        index=c("continent","iso3"),
+        vSize="population",
+        vColor="GNI",
+        type="value",
+        bg.labels="red",
+        title="전 세계 국민총소득")
+# 대륙별 인구 분포
+treemap(GNI2014,
+        index="continent",
+        vSize="population",
+        type="index",
+        title="대륙별 인구 분포")
+
+# 11-11 -------------------
+# 미국 50개 주의 면적과 수입에 대한 트리맵
+library(treemap)
+DF <- data.frame(state.x77)
+par(family="AppleGothic")
+
+New_DF <- data.frame(DF, state.name) #include USA state names
+
+treemap(New_DF,
+        index="state.name",
+        vSize="Area",
+        vColor="Income",
+        type="value",
+        title="미국 50개 주의 면적과 수입")
+# 미국 50개 주의 수입과 문맹률
+treemap(New_DF,
+        index="state.name",
+        vSize="Income",
+        vColor="Illiteracy",
+        type="value",
+        title="미국 50개 주의 수입과 문맹률?")
