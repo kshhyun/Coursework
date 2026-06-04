@@ -37,6 +37,10 @@
 				expression="execution(* com.mavenproj.aopEx.ex002..update*(..))" />
         	
 			<!-- 위빙 -->
+			<aop:aspect ref="before">
+				<aop:before method="beforeAdviceJp" pointcut-ref="insertPointcut"/>
+			</aop:aspect>
+			
 			<aop:aspect ref="after">
 				<aop:after method="afterAdvice" pointcut-ref="updatePointcut"/>
 			</aop:aspect>

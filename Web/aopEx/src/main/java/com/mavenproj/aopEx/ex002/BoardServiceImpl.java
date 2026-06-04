@@ -10,16 +10,22 @@ public class BoardServiceImpl implements BoardService {
 	private LogAdvice log;
 	int seq = 0;
 	
+//	@Override
+//	public void insertBoard() {
+//		System.out.println("[핵심기능] insertBoard() 동작 수행");
+//		
+//	}
 	@Override
-	public void insertBoard() {
-		System.out.println("[핵심기능] insertBoard() 동작 수행");
+	public void insertBoard(BoardDo bdo) {
+		// TODO Auto-generated method stub
+		System.out.println("insertBoard(BoardDo bdo) 수행");
 		
 	}
 
 	@Override
 	public void updateBoard() {
 		//log.printLog();
-//		System.out.println("[핵심기능] updateBoard() 동작 수행");
+		System.out.println("[핵심기능] updateBoard() 동작 수행");
 //		if(seq==0) {
 //			throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
 //		}
