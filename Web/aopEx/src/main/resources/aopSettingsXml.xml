@@ -20,6 +20,7 @@
         <bean id="before" class="com.mavenproj.aopEx.ex002.BeforeAdvice"></bean>
         <bean id="afterReturning" class="com.mavenproj.aopEx.ex002.AfterReturningAdvice"></bean>
         <bean id="afterThrowing" class="com.mavenproj.aopEx.ex002.AfterThrowingAdvice"></bean>
+        <bean id="afterThrowing" class="com.mavenproj.aopEx.ex002.AfterAdvice"></bean>
         
         <!-- aop 적용 -->
         <aop:config>
