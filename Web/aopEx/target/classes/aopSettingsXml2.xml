@@ -20,7 +20,7 @@
         <bean id="before" class="com.mavenproj.aopEx.ex002.BeforeAdvice"></bean>
         <bean id="afterReturning" class="com.mavenproj.aopEx.ex002.AfterReturningAdvice"></bean>
         <bean id="afterThrowing" class="com.mavenproj.aopEx.ex002.AfterThrowingAdvice"></bean>
-        <bean id="afterThrowing" class="com.mavenproj.aopEx.ex002.AfterAdvice"></bean>
+        <bean id="after" class="com.mavenproj.aopEx.ex002.AfterAdvice"></bean>
         
         <!-- aop 적용 -->
         <aop:config>
@@ -32,19 +32,14 @@
 			<aop:pointcut id="deletePointcut"
         	expression="execution(* com.mavenproj.aopEx.ex002..delete*(..))" />
         	
-			<!-- 위빙 -->
-			<aop:aspect ref="afterThrowing">
-				<aop:pointcut id="updatePointcut"
+        	<aop:pointcut id="updatePointcut"
 				expression="execution(* com.mavenproj.aopEx.ex002..update*(..))" />
-				<aop:after-throwing method="afterThrowingAdvice"
-					pointcut-ref="updatePointcut"
-					throwing="ex"/>
+        	
+			<!-- 위빙 -->
+			<aop:aspect ref="after">
+				<aop:after method="afterAdvice" pointcut-ref="updatePointcut"/>
 			</aop:aspect>
-				
-			<aop:aspect ref="afterReturning">
-				<aop:after-returning method="afterReturningAdvice"
-				pointcut-ref="deletePointcut" returning="result"/>
-			</aop:aspect>
+			
         </aop:config>
         
 

@@ -19,10 +19,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void updateBoard() {
 		//log.printLog();
-		System.out.println("[핵심기능] updateBoard() 동작 수행");
-		if(seq==0) {
-			throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
-		}
+//		System.out.println("[핵심기능] updateBoard() 동작 수행");
+//		if(seq==0) {
+//			throw new IllegalArgumentException("0번 글은 등록할 수 없습니다.");
+//		}
 	}
 
 	@Override
