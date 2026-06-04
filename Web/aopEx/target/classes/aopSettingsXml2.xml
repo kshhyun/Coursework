@@ -21,6 +21,7 @@
         <bean id="afterReturning" class="com.mavenproj.aopEx.ex002.AfterReturningAdvice"></bean>
         <bean id="afterThrowing" class="com.mavenproj.aopEx.ex002.AfterThrowingAdvice"></bean>
         <bean id="after" class="com.mavenproj.aopEx.ex002.AfterAdvice"></bean>
+        <bean id="around" class="com.mavenproj.aopEx.ex002.AroundAdvice"></bean>
         
         <!-- aop 적용 -->
         <aop:config>
@@ -38,6 +39,10 @@
 			<!-- 위빙 -->
 			<aop:aspect ref="after">
 				<aop:after method="afterAdvice" pointcut-ref="updatePointcut"/>
+			</aop:aspect>
+			
+			<aop:aspect ref="around">
+				<aop:around method="aroundAdvice" pointcut-ref="deletePointcut"/>
 			</aop:aspect>
 			
         </aop:config>
