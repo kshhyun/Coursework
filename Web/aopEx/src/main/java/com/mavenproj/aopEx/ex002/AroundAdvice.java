@@ -10,7 +10,7 @@ public class AroundAdvice {
 		System.out.println("[AroundAdvice] 비즈니스 로직 전 수행");
 		
 		Object retObj = pjp.proceed();		
-		System.out.println("[AroundAdvice] 비즈니스 로직 후 수행");
+		System.out.println("[Around After] 비즈니스 로직 후 수행");
 		
 		return retObj;
 	}
