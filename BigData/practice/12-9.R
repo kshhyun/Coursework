@@ -1,6 +1,5 @@
 library(ggplot2)
-
-setwd("D:/source")
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
 DF <- read.csv("coffee_monthly_sales.csv")
 str(DF)
 
@@ -9,5 +8,5 @@ ggplot(data = DF, aes(x = Menu, y = No, fill = Menu)) +
   stat_summary(fun = "mean", geom = "point", 
                shape = 21, size = 3, fill = "red") +
   theme(axis.title.x = element_blank()) +
-  labs(title = "ÇÑ¾çÄ¿ÇÇ¼óÀÇ ÆÇ¸Å·®",
-       y = "¼ö·®")
+  labs(title = "í•œì–‘ì»¤í”¼ìˆì˜ íŒë§¤ëŸ‰",
+       y = "ìˆ˜ëŸ‰")
