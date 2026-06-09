@@ -572,3 +572,31 @@ ggplot(data=iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
   geom_point(size=3) +
   ggtitle("꽃잎의 길이와 폭") + 
   theme(plot.title = element_text(size=16, face="bold", colour="steelblue"))
+
+# [0609] ====================================================
+# [ggplot]
+# 12-9 -------------------
+library(ggplot2)
+setwd("~/Study/CourseWork/Coursework/BigData/CSV")
+DF <- read.csv("coffee_monthly_sales.csv")
+str(DF)
+
+ggplot(data = DF, aes(x = Menu, y = No, fill = Menu)) +
+  geom_boxplot() +
+  stat_summary(fun = "mean", geom = "point", 
+               shape = 21, size = 3, fill = "red") +
+  theme(axis.title.x = element_blank()) +
+  labs(title = "한양커피숍의 판매량",
+       y = "수량")
+
+# 12-10 -------------------
+library(ggplot2)
+DF <- data.frame(state.x77)
+
+ggplot(data = DF, 
+       aes(x = c(1:50), y = Frost, color = rownames(DF))) +
+  geom_point(size=3) +
+  theme(axis.title.x = element_blank(), 
+        legend.title = element_blank()) +
+  labs(title = "미국 50개 주의 서리 내린 회수 분포",
+       y = "서리가 내린 날(일)")
