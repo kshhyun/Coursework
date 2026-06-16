@@ -21,6 +21,7 @@ student_Rfreq
 barplot(student_Rfreq)
 
 # 9-5-1 -------------------
+par(family = "AppleGothic")
 setwd("~/Study/CourseWork/Coursework/BigData/practice")
 student <- read.csv("student_blood_types.csv")
 str(student)
