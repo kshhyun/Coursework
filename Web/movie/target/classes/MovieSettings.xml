@@ -11,56 +11,52 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
     
-    <!-- 어노테이션 스캔 (MovieServiceImpl, MovieDao 등 @Service, @Autowired 처리) -->
-    <context:component-scan base-package="com.spring.aopExam"></context:component-scan>
+    <context:component-scan base-package="com.mavenproj.movie"></context:component-scan>
 
-    <!-- MovieDao Bean 등록 -->
-    <bean id="movieDao" class="com.spring.aopExam.MovieDao"></bean>
+    <!-- MovieDao -->
+    <bean id="movieDao" class="com.mavenproj.movie.MovieDao"></bean>
 
-    <!-- 영화 객체 생성 및 초기값 설정 (MovieDo 이용 객체 2개 생성) -->
-    <bean id="movieInfo1" class="com.spring.aopExam.MovieDo">
+    <!-- movieInfo1 + movieInfo2 -->
+    <bean id="movieInfo1" class="com.mavenproj.movie.MovieDo">
         <property name="movieNum" value="1"></property>
-        <property name="movieName" value="기생충"></property>
-        <property name="director" value="봉준호"></property>
+        <property name="movieName" value="군체"></property>
+        <property name="director" value="연상호"></property>
         <property name="grade" value="15"></property>
     </bean>
 
-    <bean id="movieInfo2" class="com.spring.aopExam.MovieDo">
+    <bean id="movieInfo2" class="com.mavenproj.movie.MovieDo">
         <property name="movieNum" value="2"></property>
         <property name="movieName" value="아바타"></property>
         <property name="director" value="제임스 카메론"></property>
         <property name="grade" value="12"></property>
     </bean>
 
-
     <!-- AOP -->
-    <!-- 어드바이스 객체 설정 -->
-    <bean id="ageCheckAdvice" class="com.spring.aopExam.AgeCheckAdvice"></bean>
-    <bean id="movieInfoAdvice" class="com.spring.aopExam.MovieInfoAdvice"></bean>
-    <bean id="selectedMovieAdvice" class="com.spring.aopExam.SelectedMovieAdvice"></bean>
+    <bean id="ageCheckAdvice" class="com.mavenproj.movie.AgeCheckAdvice"></bean>
+    <bean id="movieInfoAdvice" class="com.mavenproj.movie.MovieInfoAdvice"></bean>
+    <bean id="selectedMovieAdvice" class="com.mavenproj.movie.SelectedMovieAdvice"></bean>
 
-    <aop:config>
-        <!-- 포인트컷 설정 -->
+    <aop:config>    <!-- 포인트컷 설정 -->
         <aop:pointcut id="playMoviePointcut"
-            expression="execution(* com.spring.aopExam..playMovie(..))" />
+            expression="execution(* com.mavenproj.movie..playMovie(..))" />
 
         <aop:pointcut id="selectMoviePointcut"
-            expression="execution(* com.spring.aopExam..selectMovie(..))" />
+            expression="execution(* com.mavenproj.movie.MovieServiceImpl.selectMovie(..))" />
 
-        <!-- aop-throwing 설정 : 나이와 등급 비교하여 출력 어드바이스 -->
+        <!-- aop:after-throwing 설정 : 나이 등급 -->
         <aop:aspect ref="ageCheckAdvice">
             <aop:after-throwing method="ageCheckAdvice"
                 pointcut-ref="playMoviePointcut"
                 throwing="ex" />
         </aop:aspect>
 
-        <!-- aop:around 설정 : 영화재생 메시지 어드바이스 -->
+        <!-- aop:around 설정 : 영화재생 메시지-->
         <aop:aspect ref="movieInfoAdvice">
             <aop:around method="movieInfoAdvice"
                 pointcut-ref="playMoviePointcut" />
         </aop:aspect>
 
-        <!-- aop:after-returning 설정 : 영화선택 결과 어드바이스 -->
+        <!-- aop:after-returning 설정 : 영화선택 -->
         <aop:aspect ref="selectedMovieAdvice">
             <aop:after-returning method="selectedMovieAdvice"
                 pointcut-ref="selectMoviePointcut"

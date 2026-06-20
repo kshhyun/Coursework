@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>aopEx</name>
+  <name>movie</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -28,7 +28,7 @@
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-aop</artifactId>
-	    <version>6.2.16</version>
+	    <version>6.1.21</version>
 	    <scope>compile</scope>
 	</dependency>
 	
