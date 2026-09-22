@@ -1,12 +1,12 @@
-#ì´í•­ë¶„í¬ í•¨ìˆ˜ ------------
+#ÀÌÇ×ºÐÆ÷ ÇÔ¼ö------------
 dbinom(2, 10, 0.5)
 pbinom(2, 10, 0.5)
 
-#í¬ì•„ì†¡ë¶„í¬ í•¨ìˆ˜------------ í‰ê· ì„ ë²—ì–´ë‚˜ëŠ” ìˆœê°„ ìˆ˜ì¹˜ ë‚´ë ¤ê°
+#Æ÷¾Æ¼ÛºÐÆ÷ ÇÔ¼ö----------- 
 dpois(6, 10)
 ppois(6, 10)
 
-#í‰ê·  Î»ì— ë”°ë¥¸ í¬ì•„ì†¡ ë¶„í¬ì˜ ì˜ˆ ------------
+#Æò±Õ ¥ë¿¡ µû¸¥ Æ÷¾Æ¼Û ºÐÆ÷ÀÇ ¿¹ ------------
 rs <- data.frame()
 
 for (i in 1:20){
@@ -25,7 +25,7 @@ legend(x="topright",
        col=c("red", "green", "blue", "pink"),
        pch=c(1, 2, 3, 4), cex=1)
 
-#í‘œì¤€ì •ê·œë¶„í¬ì˜ PDFì™€ CDF ------------
+#Ç¥ÁØÁ¤±ÔºÐÆ÷ÀÇ PDF¿Í CDF ------------
 par(mfrow=c(2, 1))
 
 #Normal distribution, X~N(0,1)
@@ -39,7 +39,7 @@ probability <- pnorm(x, mean=0, sd=1)
 plot(x, probability, type='l', col="green", 
      main="Cumulative normal distribution, X~N(0,1)")
 
-# í‘œì¤€ì •ê·œë¶„í¬ì˜ êµ¬ê°„ ë©´ì  ------------
+# Ç¥ÁØÁ¤±ÔºÐÆ÷ÀÇ ±¸°£ ¸éÀû ------------
 # P(-1 <= z <= 1)
 pnorm(q=c(1), mean=0, sd=1)
 pnorm(q=c(-1), mean=0, sd=1)
@@ -61,7 +61,7 @@ pnorm(q=c(1), mean=0, sd=1, lower.tail = TRUE)
 pnorm(q=c(1), mean=0, sd=1, lower.tail = FALSE)
 
 # Random number generation from normal distribution X~N(0, 1) ------------
-# ìž„ì˜ ë‚œìˆ˜ ê°œìˆ˜ì— ë”°ë¥¸ í™•ë¥ ë¶„í¬
+# ÀÓÀÇ ³­¼ö °³¼ö¿¡ µû¸¥ È®·üºÐÆ÷
 par(mfrow=c(1,3))
 x <- rnorm(10, mean=0, sd=1)
 hist(x, col=rainbow(10), freq=F)
@@ -75,7 +75,7 @@ x <- rnorm(500, mean=0, sd=1)
 hist(x, col=rainbow(10), freq=F)
 lines(density(x), lwd=2)
 
-#í‘œì¤€ì •ê·œë¶„í¬ì™€ t-ë¶„í¬ ------------ [1-7]
+#Ç¥ÁØÁ¤±ÔºÐÆ÷¿Í t-ºÐÆ÷ ------------ [1-7]
 library(ggplot2)
 
 ggplot(data.frame(x=c(-3,3)), aes(x=x)) +
@@ -91,10 +91,54 @@ ggplot(data.frame(x=c(-3,3)), aes(x=x)) +
   annotate("text", x=2.4, y=0.37, label="t(9)") + 
   annotate("text", x=2.4, y=0.34, label="t(3)") + 
   annotate("text", x=2.4, y=0.31, label="t(1)") +   
-  ggtitle("ì •ê·œë¶„í¬ì™€ t-ë¶„í¬") +
+  ggtitle("Á¤±ÔºÐÆ÷¿Í t-ºÐÆ÷") +
   labs(y="p(x)")
 
+#Chi-square distribution ------------ [1-8]
+library(ggplot2)
 
+ggplot(data.frame(x=c(0,10)), aes(x=x)) +
+  stat_function(fun=dchisq, args=list(df=1), colour="black", linewidth=1) +
+  stat_function(fun=dchisq, args=list(df=2), colour="red", linewidth=1) +
+  stat_function(fun=dchisq, args=list(df=3), colour="green", linewidth=1) + 
+  stat_function(fun=dchisq, args=list(df=4), colour="blue", linewidth=1) + 
+  stat_function(fun=dchisq, args=list(df=5), colour="magenta", linewidth=1) +
+  annotate("segment", x=7.0, xend=8.5, y=1.0, yend=1.0, colour="black", linewidth=1) +
+  annotate("segment", x=7.0, xend=8.5, y=0.9, yend=0.9, colour="red", linewidth=1) + 
+  annotate("segment", x=7.0, xend=8.5, y=0.8, yend=0.8, colour="green", linewidth=1) +
+  annotate("segment", x=7.0, xend=8.5, y=0.7, yend=0.7, colour="blue", linewidth=1) +
+  annotate("segment", x=7.0, xend=8.5, y=0.6, yend=0.6, colour="magenta", linewidth=1) +  
+  annotate("text", x=9.2, y=1.0, label="n=1") +
+  annotate("text", x=9.2, y=0.9, label="n=2") + 
+  annotate("text", x=9.2, y=0.8, label="n=3") + 
+  annotate("text", x=9.2, y=0.7, label="n=4") +   
+  annotate("text", x=9.2, y=0.6, label="n=5") +   
+  ggtitle("Chi-square distribution") +
+  labs(y="p(x)")
 
+ggplot(data.frame(x=c(0,100)), aes(x=x)) + #x=c(-50,50)À» ¼öÁ¤(Ä«ÀÌ½ºÄù¾î´Â À½¼öX)
+  stat_function(fun=dchisq, args=list(df=30), colour="black", linewidth=1)+
+  labs(y="p(x)")
 
+#F-distribution ------------ [1-9]
+library(ggplot2)
+
+ggplot(data.frame(x=c(0,5)), aes(x=x)) +
+  stat_function(fun=df, args=list(df1=1, df2=1), colour="black", linewidth=1) +
+  stat_function(fun=df, args=list(df1=2, df2=2), colour="red", linewidth=1) +
+  stat_function(fun=df, args=list(df1=5, df2=3), colour="green", linewidth=1) +
+  stat_function(fun=df, args=list(df1=10, df2=4), colour="blue", linewidth=1) +
+  stat_function(fun=df, args=list(df1=100, df2=100), colour="magenta", linewidth=1) +  
+  annotate("segment", x=3, xend=3.5, y=1.5, yend=1.5, colour="black", linewidth=1) +
+  annotate("segment", x=3, xend=3.5, y=1.3, yend=1.3, colour="red", linewidth=1) + 
+  annotate("segment", x=3, xend=3.5, y=1.1, yend=1.1, colour="green", linewidth=1) + 
+  annotate("segment", x=3, xend=3.5, y=0.9, yend=0.9, colour="blue", linewidth=1) + 
+  annotate("segment", x=3, xend=3.5, y=0.7, yend=0.7, colour="magenta", linewidth=1) +   
+  annotate("text", x=4.3, y=1.5, label="(n1=1,   n2=1)") +
+  annotate("text", x=4.3, y=1.3, label="(n1=2,   n2=2)") + 
+  annotate("text", x=4.3, y=1.1, label="(n1=5,   n2=3)") +
+  annotate("text", x=4.3, y=0.9, label="(n1=10,  n2=4)") + 
+  annotate("text", x=4.3, y=0.7, label="(n1=100, n2=100)") +  
+  ggtitle("F-distribution") +
+  labs(y="p(x)")
 
