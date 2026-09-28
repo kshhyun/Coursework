@@ -15,4 +15,12 @@ public class BoardController {
 		return "insertBoardView";
 	}
 	
+	@RequestMapping(value = "/insertProcBoard.do")
+	public String insetProcBoard() {
+		System.out.println(" --> BoardController:insertProcBoard()");
+		
+		return "insertBoardView";
+	}
+	
+	
 }
