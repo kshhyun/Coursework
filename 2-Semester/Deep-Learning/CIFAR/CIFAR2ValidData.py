@@ -4,7 +4,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 
 # 저장할 폴더 경로
-output_dir = 'F:/CIFARcustom/valid'
+output_dir = '/Users/hyun/Study/CourseWork/Coursework/2-Semester/Deep-Learning/CIFARcustom/valid'
 
 # CIFAR-10 클래스 이름 (순서대로)
 classes = ['airplane', 'automobile', 'bird', 'cat', 'deer',
