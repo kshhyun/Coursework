@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms, models
+# model 모듈이 상위폴더에 존재 -> python3 -m CIFAR.CIFARtraining : 프로젝트 루트로 실행
 import torchvision
 
 # 디바이스 설정
@@ -12,7 +13,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # 하이퍼파라미터
 batch_size = 64
 learning_rate = 0.001
-num_epochs = 5
+num_epochs = 5  #50
 num_classes = 10
 
 # 데이터 전처리
@@ -23,8 +24,8 @@ transform = transforms.Compose([
 ])
 
 # 데이터 로딩
-train_dataset = datasets.ImageFolder(root='f:/CIFARcustom/train', transform=transform)
-val_dataset = datasets.ImageFolder(root='f:/CIFARcustom/valid', transform=transform)
+train_dataset = datasets.ImageFolder(root='/Users/hyun/Study/CourseWork/Coursework/2-Semester/Deep-Learning/CIFARcustom/train', transform=transform)
+val_dataset = datasets.ImageFolder(root='/Users/hyun/Study/CourseWork/Coursework/2-Semester/Deep-Learning/CIFARcustom/valid', transform=transform)
 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=0)
 val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=0)
