@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
+
+import com.sun.jdi.connect.spi.ClosedConnectionException;
 
 @Repository("boardDao")
 public class BoardDao {
@@ -77,5 +80,39 @@ public class BoardDao {
 			}
 		}
 	}
+	
+	// 1. insertBoard(BoardDo bdo) : DB에 BoardDo로 전달되는 데이터를 저장
+	public void insertBoard(BoardDo bdo) {
+		System.out.println("insertBoard(BoardDo bdo) 처리 중-----");
+		
+		//DB 연동
+		conn = getConn();
+		
+		try {
+			// 2. SQL문 완성
+			String sql = "insert into board (title, writer, content) values (?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bdo.getTitle());   // 1번째 ?값
+			pstmt.setString(2, bdo.getWriter());  // 2번째 ?값
+			pstmt.setString(3, bdo.getContent()); // 3번째 ?값
+			
+			// 3. sql문 실행 및 결과값 처리
+			pstmt.executeUpdate();
+			
+			// 4. 연결 해제
+			closeConn(conn, rs, pstmt);
+			System.out.println("insertBoard(BoardDo bdo) 처리 완료");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
 	
 }
