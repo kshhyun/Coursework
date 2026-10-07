@@ -16,9 +16,9 @@
 	<h3> c: if 연습 </h3>
 	
 	<c:set value="hong" var="user" />
-	<p> user: ${user}) </p>
+	<p> user: ${user} </p>
 	
-	<c:if test="${user == hong}" var="result">
+	<c:if test="${user == 'hong'}" var="result">
 		<p> body content : result : ${result} </p>
 	</c:if>
 	
@@ -27,5 +27,26 @@
 	</c:if>
 	<p> if문 밖 : result : ${result} </p>
 	
+	<hr>
+	<h3>c:forEach 연습</h3>
+	
+	<c:forEach var="i" begin="0" end="4">
+		i -> ${i} <br>
+	</c:forEach>
+	<hr>
+	<c:forEach var="i" begin="0" end="4" step="${i+2}">
+			i -> ${i} <br>
+	</c:forEach>
+	<hr>
+	<h3> c:forEach : 콜렉션 객체의 크기만큼 for문 이용 반복 </h3>
+	
+	<!--
+		ctrl + shift + / : 자동 주석
+		jsp:useBean : ProductDo로부터 product 이름의 객체를 생성해주는 jsp 태그
+	-->
+	<jsp:useBean id = "productList" class="com.springboot.webapp.model.ProductDo"/>
+	<c:forEach var ="product" items="${productList.getProductList()}">
+		${product} <br>
+	</c:forEach>
 </body>
 </html>
