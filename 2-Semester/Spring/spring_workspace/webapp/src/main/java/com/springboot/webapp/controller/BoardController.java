@@ -1,8 +1,11 @@
 package com.springboot.webapp.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.webapp.model.BoardDao;
 import com.springboot.webapp.model.BoardDo;
@@ -38,10 +41,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/getBoardList.do")
-	public String getBoardList() {
+	//public String getBoardList(BoardDao bdao, ModelAndView mav) {
+	public ModelAndView getBoardList(BoardDo bdo, BoardDao bdao, ModelAndView mav) {
 		System.out.println(" --> getBoardList()");
 		
-		return "getBoardListView";
+		ArrayList<BoardDo> bList = bdao.getBoardList();
+		mav.addObject("bData", bList); //뷰어에게 bData 이름으로 bList 데이터 전달
+		mav.setViewName("getBoardListView"); //뷰어 호출
+		
+		//return "getBoardListView";
+		return mav;
 	}
 	
 	@RequestMapping(value="/jstlex")
@@ -50,7 +59,6 @@ public class BoardController {
 		//http://localhost:8080/jstles --> jstles.jsp 연결..
 		return "jstl";
 	}
-	
 	
 	
 	

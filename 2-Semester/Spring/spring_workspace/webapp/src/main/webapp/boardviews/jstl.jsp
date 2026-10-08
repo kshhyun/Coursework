@@ -48,5 +48,20 @@
 	<c:forEach var ="product" items="${productList.getProductList()}">
 		${product} <br>
 	</c:forEach>
+	
+	<hr>
+	<select>
+		<c:forEach var ="product" items="${productList.getProductList()}">
+			<option> ${product} </option>
+		</c:forEach>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
@@ -112,7 +113,45 @@ public class BoardDao {
 	}
 	
 	
-	
+	public ArrayList<BoardDo> getBoardList(){
+		System.out.println("BoardDao : getBoardList() 처리 중");
+		ArrayList<BoardDo> bList = new ArrayList<BoardDo>();
+		
+		//DB 연동
+		conn = getConn();
+		
+		try {
+			// 2. SQL문 완성
+			String sql = "select * from board";
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			// 3. sql문 실행 및 결과값 처리
+			rs = pstmt.executeQuery();
+			while(rs.next()) { //rs.next() 이용, 테이블의 각각의 로우 데이터에 접근
+				BoardDo bdo = new BoardDo();
+				bdo.setSeq(rs.getInt(1));
+				bdo.setTitle(rs.getString(2));
+				bdo.setWriter(rs.getString(3));
+				bdo.setContent(rs.getString(4));
+				
+				//읽어온 데이터 확인 --> 확인 후 삭제 또는 주석
+				System.out.println(bdo.toString());
+				
+				bList.add(bdo);
+			}
+			
+			
+			// 4. 연결 해제
+			closeConn(conn, rs, pstmt);
+			System.out.println("insertBoard(BoardDo bdo) 처리 완료");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bList;
+	}
 	
 	
 }
