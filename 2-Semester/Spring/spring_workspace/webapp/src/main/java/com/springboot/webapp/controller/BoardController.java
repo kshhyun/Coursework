@@ -59,7 +59,7 @@ public class BoardController {
 		System.out.println("seq: " + bdo.getSeq());
 		
 		BoardDo board = bdao.getOneBoard(bdo);
-		System.out.println("board.content() : " + bdo.getContent());
+		System.out.println("board.content() : " + board.getContent());
 		
 		mav.addObject("board", board);
 		mav.setViewName("modifyBoardView");
