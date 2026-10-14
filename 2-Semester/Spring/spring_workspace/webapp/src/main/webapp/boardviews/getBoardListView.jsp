@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!-- jstl 라이브러리 추가-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,34 +29,36 @@
 <body>
 	<div class="container form-style">
 		<p class="fs-2 text-center"> 전체 게시판 데이터</p>
+		<button type="button" class="btn btn-outline-primary"
+				onclick="location.href='insertBoard.do'">게시판 추가</button>
 		
 		<table class="table">
 		  <thead>
 		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">First</th>
-		      <th scope="col">Last</th>
-		      <th scope="col">Handle</th>
+		      <th scope="col">번호</th>
+		      <th scope="col">제목</th>
+		      <th scope="col">글쓴이</th>
+		      <th scope="col">내용</th>
+			  <th scope="col">modify/delete</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
-		      <td>@mdo</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">2</th>
-		      <td>Jacob</td>
-		      <td>Thornton</td>
-		      <td>@fat</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">3</th>
-		      <td colspan="2">Larry the Bird</td>
-		      <td>@twitter</td>
-		    </tr>
+			
+			<c:forEach items="${bData}" var="board">
+				<tr>
+			      <th scope="row"> ${board.seq}</th>
+			      <td>${board.title}</td>
+			      <td>${board.writer}</td>
+				  <td>${board.content}</td>
+				  <td>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='modifyBoard.do?seq=${board.seq}'">Modify</button>
+					<button type="button" class="btn btn-danger"
+						onclick="location.href='modifyBoard.do?seq=${board.seq}'">Delete</button>
+				  </td>
+			    </tr>
+			</c:forEach>
+			
 		  </tbody>
 		</table>
 	</div>

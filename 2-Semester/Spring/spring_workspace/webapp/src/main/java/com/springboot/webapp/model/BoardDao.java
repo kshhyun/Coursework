@@ -112,12 +112,12 @@ public class BoardDao {
 		
 	}
 	
-	
+	// 2. getBoardList() : DB로부터 전체 데이터를 가져와 배열로 리턴하는 메소드
 	public ArrayList<BoardDo> getBoardList(){
 		System.out.println("BoardDao : getBoardList() 처리 중");
 		ArrayList<BoardDo> bList = new ArrayList<BoardDo>();
 		
-		//DB 연동
+		// 1. DB 연동
 		conn = getConn();
 		
 		try {
@@ -153,5 +153,39 @@ public class BoardDao {
 		return bList;
 	}
 	
-	
+	// 3. getOneBoard(seq) : DB로부터 seq에 해당되는 데이터를 리턴하는 메소드
+	public BoardDo getOneBoard(BoardDo bdo) {
+		System.out.println("BoardDao : getOneBoard() --> ");
+		BoardDo board = new BoardDo(); //반환 데이터
+		
+		// 1. DB 연동
+		conn = getConn();
+		
+		try {
+			// 2. SQL문 완성
+			String sql = "select * from board where seq=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bdo.getSeq()); //sql문에서 첫번째 ? 채우기
+			
+			
+			// 3. sql문 실행 및 결과값 처리
+			rs = pstmt.executeQuery();
+			while(rs.next()) { //rs.next() 이용, 테이블의 각각의 로우 데이터에 접근
+				board.setSeq(rs.getInt(1));
+				board.setTitle(rs.getString(2));
+				board.setWriter(rs.getString(3));
+				board.setContent(rs.getString(4));
+			}
+			
+			// 4. 연결 해제
+			closeConn(conn, rs, pstmt);
+			System.out.println("getOneBoard(BoardDo bdo) 처리 완료");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return board;
+	}
 }

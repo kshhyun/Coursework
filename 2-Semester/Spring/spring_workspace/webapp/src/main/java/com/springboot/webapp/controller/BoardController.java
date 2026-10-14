@@ -53,6 +53,20 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/modifyBoard.do")
+	public ModelAndView modifyBoard(BoardDo bdo, BoardDao bdao, ModelAndView mav) {
+		System.out.println("modifyBoard() --> ");
+		System.out.println("seq: " + bdo.getSeq());
+		
+		BoardDo board = bdao.getOneBoard(bdo);
+		System.out.println("board.content() : " + bdo.getContent());
+		
+		mav.addObject("board", board);
+		mav.setViewName("modifyBoardView");
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/jstlex")
 	public String jstlEx() {
 		
