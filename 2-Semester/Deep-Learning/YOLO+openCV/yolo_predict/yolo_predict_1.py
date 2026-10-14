@@ -4,7 +4,7 @@ from ultralytics import YOLO
 
 # YOLO pretrained model을 이용한 예측
 model = YOLO('yolov8n.pt')
-result = model.predict(source='d:/fish/images', conf=0.5, show=True)               
+result = model.predict(source='Images4YOLO/test/images', conf=0.5, show=True)               
 #result = model.predict(source='d:/fish/test/images', conf=0.5, show=True)
 
 # 열대어 이미지로 학습된 모델을 이용한 예측
