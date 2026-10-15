@@ -26,20 +26,20 @@
 <body>
 	<div class="container form-style">
 		<p class="fs-2 text-center"> 게시판 수정 </p>
-		<form action="insertProcBoard.do" method="post">
+		<form action="modifyProcBoard.do?seq=${board.seq}" method="post">
 			  <div class="mb-3">
 			    <label for="example" class="form-label">글 제목 (Title) </label>
-			    <input type="text" class="form-control" id="example" name="title">
+			    <input type="text" class="form-control" id="example" name="title" value="${board.title}">
 			  </div>
 			  
 			  <div class="mb-3">
   			    <label for="example" class="form-label">글쓴이 (Writer) </label>
-  			    <input type="text" class="form-control" id="example" name="writer">
+  			    <input type="text" class="form-control" id="example" name="writer" value="${board.writer}" readonly>
   			  </div>
 			  
 			  <div class="mb-3">
   			    <label for="example" class="form-label">글내용 (Content) </label>
-  			    <input type="text" class="form-control" id="example" name="content">
+  			    <input type="text" class="form-control" id="example" name="content" value="${board.content}">
   			  </div>
 			  
 			  <button type="submit" class="btn btn-primary">저장</button>

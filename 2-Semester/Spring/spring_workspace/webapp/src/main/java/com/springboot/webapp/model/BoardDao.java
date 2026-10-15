@@ -188,4 +188,32 @@ public class BoardDao {
 		
 		return board;
 	}
+	
+	// 4. updateBoard(BoardDo bdo) : DB에 수정된 데이터를 포함하는 BoardDo를 저장하는 메소드
+	public void updateBoard(BoardDo bdo) {
+		
+		System.out.println("updateBoard() --> ");
+		// 1. DB 연동
+		conn = getConn();
+		
+		try {
+			// 2. SQL문 완성
+			String sql = "update board set title=?, content=? where seq=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bdo.getTitle());
+			pstmt.setString(2, bdo.getContent());
+			pstmt.setInt(3, bdo.getSeq()); //sql문에서 첫번째 ? 채우기			
+			
+			// 3. sql문 실행 및 결과값 처리
+			pstmt.executeUpdate();
+			
+			// 4. 연결 해제
+			closeConn(conn, rs, pstmt);
+			System.out.println("getOneBoard(BoardDo bdo) 처리 완료");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

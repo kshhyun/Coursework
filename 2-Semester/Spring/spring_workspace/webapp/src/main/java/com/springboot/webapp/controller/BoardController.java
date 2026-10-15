@@ -67,8 +67,21 @@ public class BoardController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/modifyProcBoard.do")
+	public ModelAndView modifyProcBoard(BoardDo bdo, BoardDao bdao, ModelAndView mav) {
+		System.out.println("modifyProcBoard() --> ");
+		System.out.println("seq: " + bdo.getSeq() + " ,title: " + bdo.getTitle()
+		+ " ,content: " + bdo.getContent());
+		
+		//Dao 이용해 수정 데이터를 DB에 저장.. --> updateBoard(bdo)
+		bdao.updateBoard(bdo);
+		mav.setViewName("redirect:getBoardList.do");
+		
+		return mav;
+	}
+	
 	@RequestMapping(value="/jstlex")
-	public String jstlEx() {
+ 	public String jstlEx() {
 		
 		//http://localhost:8080/jstles --> jstles.jsp 연결..
 		return "jstl";
