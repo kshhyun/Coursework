@@ -2,7 +2,8 @@
 
 import cv2
 
-cap = cv2.VideoCapture('d:/fish/mp4/fish2.mp4')
+cap = cv2.VideoCapture('Images4YOLO/mp4/fish2.mp4')
+#cap = cv2.VideoCapture(0)  # Use default camera
 
 frameCount = 0
 while (True) :
@@ -19,7 +20,7 @@ while (True) :
     frameCount += 1
 
     cv2.imshow('Input Stream', frame) 
-    if (cv2.waitKey(1) == 27) :
+    if (cv2.waitKey(25) == 27) : # origin --> cv2.waitKey(1) == 27 / default camera ver -> (0)
         break
     
 cap.release()
