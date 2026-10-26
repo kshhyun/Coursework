@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.webapp.model.BoardDao;
 import com.springboot.webapp.model.BoardDo;
+
+import org.springframework.ui.Model;
 
 
 @Controller
@@ -78,6 +81,33 @@ public class BoardController {
 		mav.setViewName("redirect:getBoardList.do");
 		
 		return mav;
+	}
+	
+	@RequestMapping(value = "/deleteBoard.do")
+	public ModelAndView deleteBoard(BoardDo bdo, BoardDao bdao, ModelAndView mav) {
+		System.out.println("deleteBoard() --> ");
+		System.out.println("seq: " + bdo.getSeq());
+		
+		//Dao 이용해 수정 데이터를 DB에 저장.. --> updateBoard(bdo)
+		bdao.deleteBoard(bdo);
+		mav.setViewName("redirect:getBoardList.do");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/searchBoardList.do")
+	public String searhchBoardList(
+			@RequestParam(value = "searchCon") String searchCon,
+			@RequestParam(value = "searchKey") String searchKey,
+			BoardDao bdao, Model model) {
+		
+		System.out.println("searchBoard() --> ");
+		System.out.println("searchCon: " + searchCon + ", searchKey: " + searchKey);
+		
+		ArrayList<BoardDo> bList = bdao.searchBoardList(searchCon, searchKey);
+		model.addAttribute("bData", bList);
+		
+		return "getBoardListView";
 	}
 	
 	@RequestMapping(value="/jstlex")

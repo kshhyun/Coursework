@@ -209,11 +209,92 @@ public class BoardDao {
 			
 			// 4. 연결 해제
 			closeConn(conn, rs, pstmt);
-			System.out.println("getOneBoard(BoardDo bdo) 처리 완료");
+			System.out.println("updateBoard(BoardDo bdo) 처리 완료");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	// 5. deleteBoard(BoardDo bdo) : DB에 데이터를 삭제하는 메소드
+	public void deleteBoard(BoardDo bdo) {
+		System.out.println("deleteBoard() --> ");
+		// 1. DB 연동
+		conn = getConn();
+		
+		try {
+			// 2. SQL문 완성
+			String sql = "delete from board where seq=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bdo.getSeq()); //sql문에서 첫번째 ? 채우기			
+			
+			// 3. sql문 실행 및 결과값 처리
+			pstmt.executeUpdate();
+			
+			// 4. 연결 해제
+			closeConn(conn, rs, pstmt);
+			System.out.println("deleteBoard(BoardDo bdo) 처리 완료");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// 6. searchBoardList() : DB로부터 검색어에 매칭되는 데이터 가져오는 메소드
+		public ArrayList<BoardDo> searchBoardList(String searchCon, String searchKey){
+			System.out.println("BoardDao : searchBoardList() 처리 중");
+			ArrayList<BoardDo> bList = new ArrayList<>();
+			
+			// 1. DB 연동
+			conn = getConn();
+			
+			try {
+				// 2. SQL문 완성
+				//String sql = "select * from board";
+				
+				String sql = "";
+				
+				if(searchCon.equals("title")) {
+					sql = "select * from board where title=?";
+				} else if(searchCon.equals("writer")) {
+					sql = "select * from board where writer=?";
+				} else if(searchCon.equals("content")) {
+					sql = "select * from board where content=?";
+				}
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchKey);
+				
+				
+				// 3. sql문 실행 및 결과값 처리
+				rs = pstmt.executeQuery();
+				while(rs.next()) { //rs.next() 이용, 테이블의 각각의 로우 데이터에 접근
+					BoardDo bdo = new BoardDo();
+					bdo.setSeq(rs.getInt(1));
+					bdo.setTitle(rs.getString(2));
+					bdo.setWriter(rs.getString(3));
+					bdo.setContent(rs.getString(4));
+					
+					//읽어온 데이터 확인 --> 확인 후 삭제 또는 주석
+					System.out.println(bdo.toString());
+					
+					bList.add(bdo);
+				}
+				
+				
+				// 4. 연결 해제
+				closeConn(conn, rs, pstmt);
+				System.out.println("insertBoard(BoardDo bdo) 처리 완료");
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return bList;
+		}
+		
+	
 }

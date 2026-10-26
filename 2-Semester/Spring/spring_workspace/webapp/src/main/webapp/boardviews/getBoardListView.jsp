@@ -29,9 +29,25 @@
 <body>
 	<div class="container form-style">
 		<p class="fs-2 text-center"> 전체 게시판 데이터</p>
-		<button type="button" class="btn btn-outline-primary"
-				onclick="location.href='insertBoard.do'">게시판 추가</button>
 		
+		<nav class="navbar">
+			<div class="container-fluid d-flex justify-content-between">
+				<button type="button" class="btn btn-outline-primary"
+					onclick="location.href='insertBoard.do'">게시판 추가</button>
+				
+				<form action="searchBoardList.do" class="d-flex align-items-center">
+					<select name="searchCon" class="form-select">
+						<option value="title">제목</option>
+						<option value="wirter">글쓴이</option>
+						<option value="content">내용</option>
+					</select>
+					<input name="searchKey" class="form-control me-2">
+					<button type="submit" class="btn btn-outline-success text-nowrap">검색</button>
+				</form>
+			</div>
+		</nav>
+		
+			
 		<table class="table">
 		  <thead>
 		    <tr>
@@ -54,7 +70,7 @@
 					<button type="button" class="btn btn-primary"
 						onclick="location.href='modifyBoard.do?seq=${board.seq}'">Modify</button>
 					<button type="button" class="btn btn-danger"
-						onclick="location.href='modifyBoard.do?seq=${board.seq}'">Delete</button>
+						onclick="location.href='deleteBoard.do?seq=${board.seq}'">Delete</button>
 				  </td>
 			    </tr>
 			</c:forEach>
